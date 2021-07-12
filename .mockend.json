@@ -6,20 +6,22 @@
     "country": "string",
     "createdAt": "date",
     "comments": "Comment[]",
-    "user": {
-      "firstName": "string",
-      "lastName": "string",
-      "address" : {
-        "street" : "string",
-        "city": "string",
-        "country": "string",
-        "postalCode" : "int"
-      },
-      "age": "int"
-    }
+    "user": "User"
   },
   "Comment": {
     "body": "string",
     "post": "Post"
+  },
+  "User": {
+    "firstName": "string",
+    "lastName": "string",
+    "address" : "Address",
+    "age": "int"
+  },
+  "Address": {
+    "street" : "string",
+    "city": "string",
+    "country": "string",
+    "postalCode" : "int"
   }
 }
