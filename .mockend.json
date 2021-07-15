@@ -3,18 +3,23 @@
     "title": {
       "string": {}
     },
+    "category": {
+      "string": [
+        "one",
+        "two",
+        "three"
+      ]
+    },
     "views": {
-      "int": {
-        "min": 0,
-        "max": 100
-      }
+      "int": { "min": 0, "max": 9000 }
     },
     "published": {
       "boolean": {}
     },
     "createdAt": {
       "dateTime": {
-        "max": "2020-12-31T10:10:10Z"
+        "min": "2010-01-01T00:00:00Z",
+        "max": "2020-12-31T23:59:59Z"
       }
     },
     "comments": {
