@@ -1,27 +1,32 @@
 {
   "Post": {
-    "title": "string",
-    "views": "int",
-    "published": "boolean",
-    "country": "string",
-    "createdAt": "date",
-    "comments": "Comment[]",
-    "user": "User"
+    "title": {
+      "string": {}
+    },
+    "views": {
+      "int": {
+        "min": 0,
+        "max": 100
+      }
+    },
+    "published": {
+      "boolean": {}
+    },
+    "createdAt": {
+      "dateTime": {
+        "max": "2020-12-31T10:10:10Z"
+      }
+    },
+    "comments": {
+      "hasMany": "Comment"
+    }
   },
   "Comment": {
-    "body": "string",
-    "post": "Post"
-  },
-  "User": {
-    "firstName": "string",
-    "lastName": "string",
-    "address" : "Address",
-    "age": "int"
-  },
-  "Address": {
-    "street" : "string",
-    "city": "string",
-    "country": "string",
-    "postalCode" : "int"
+    "body": {
+      "string": {}
+    },
+    "post": {
+      "belongsTo": "Post"
+    }
   }
 }
