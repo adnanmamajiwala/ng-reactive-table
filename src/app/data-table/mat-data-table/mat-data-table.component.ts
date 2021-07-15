@@ -1,7 +1,8 @@
-import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator} from "@angular/material/paginator";
-import {MatTableDataSource} from "@angular/material/table";
-import {MatTableConfiguration} from "./mat-table-configuration.model";
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatTableDataSource} from '@angular/material/table';
+import {ColumnInfo} from './mat-table-configuration.model';
+import {DataTableService} from '../data-table.service';
 
 @Component({
   selector: 'app-mat-data-table',
@@ -11,30 +12,36 @@ import {MatTableConfiguration} from "./mat-table-configuration.model";
 export class MatDataTableComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  @Input() config: MatTableConfiguration<any>;
 
   dataSource: MatTableDataSource<any>;
+  columnInfoList: ColumnInfo[] = [];
   propertyNames: string[] = [];
 
-  constructor() { }
+  constructor(private dataTableService: DataTableService) {
+  }
 
   ngOnInit(): void {
-    this.propertyNames = this.getPropertyNames();
-    this.dataSource = new MatTableDataSource(this.config.data);
+    this.dataTableService.getConfig$().subscribe(value => {
+      this.dataSource = new MatTableDataSource(value.data);
+      this.columnInfoList = value.columnInfoList;
+    });
+
+    this.dataTableService.getSelectColumns$().subscribe((value: ColumnInfo[]) => {
+      this.propertyNames = this.getPropertyNames(value);
+      console.log(this.propertyNames);
+    });
   }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
 
-  getPropertyNames(): string[] {
+  getPropertyNames(columnInfoList: ColumnInfo[]): string[] {
     let resp: string[] = [];
-    for (let info of this.config.columnInfoList) {
+    for (let info of columnInfoList) {
       resp.push(info.name);
     }
     return resp;
   }
 
 }
-
-

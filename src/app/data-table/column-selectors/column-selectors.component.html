@@ -1,1 +1,9 @@
-<p>column-selectors works!</p>
+<div class="row">
+  <div class="col-auto" *ngFor="let col of columnInfoList; let i=index">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" [value]="col" checked (click)="onClick($event, i, col)">
+      <label class="form-check-label">{{col.displayText}}</label>
+    </div>
+  </div>
+</div>
+

@@ -1,4 +1,4 @@
-import {Directive, ElementRef, Input, OnInit, Renderer2} from '@angular/core';
+import {Directive, ElementRef, HostListener, Input, OnInit, Renderer2} from '@angular/core';
 
 @Directive({
   selector: '[resizeColumn]'
@@ -22,12 +22,12 @@ export class ResizeColumnDirective implements OnInit {
     const thead = this.renderer.parentNode(row);
     this.table = this.renderer.parentNode(thead);
 
-    const resizer = this.renderer.createElement("span");
-    this.renderer.addClass(resizer, "resize-holder");
+    const resizer = this.renderer.createElement('span');
+    this.renderer.addClass(resizer, 'resize-holder');
     this.renderer.appendChild(this.column, resizer);
-    this.renderer.listen(resizer, "mousedown", this.onMouseDown);
-    this.renderer.listen(this.table, "mousemove", this.onMouseMove);
-    this.renderer.listen("document", "mouseup", this.onMouseUp);
+    this.renderer.listen(resizer, 'mousedown', this.onMouseDown);
+    this.renderer.listen(this.table, 'mousemove', this.onMouseMove);
+    this.renderer.listen('document', 'mouseup', this.onMouseUp);
   }
 
   onMouseDown = (event: MouseEvent) => {
@@ -39,22 +39,20 @@ export class ResizeColumnDirective implements OnInit {
   onMouseMove = (event: MouseEvent) => {
     const offset = 35;
     if (this.pressed && event.buttons) {
-      this.renderer.addClass(this.table, "resizing");
+      this.renderer.addClass(this.table, 'resizing');
 
       // Calculate width of column
-      let width =
-        this.startWidth + (event.pageX - this.startX - offset);
+      let width = this.startWidth + (event.pageX - this.startX - offset);
 
-      const tableCells = Array.from(this.table.querySelectorAll(".mat-row")).map(
-        (row: any) => row.querySelectorAll(".mat-cell").item(this.resizeColumn)
-      );
+      const rows = this.table.querySelectorAll('.mat-row');
+      const tableCells = Array.from(rows).map((row: Element) => row.querySelectorAll('.mat-cell').item(this.resizeColumn));
 
       // Set table header width
-      this.renderer.setStyle(this.column, "width", `${width}px`);
+      this.renderer.setStyle(this.column, 'width', `${width}px`);
 
       // Set table cells width
       for (const cell of tableCells) {
-        this.renderer.setStyle(cell, "width", `${width}px`);
+        this.renderer.setStyle(cell, 'width', `${width}px`);
       }
     }
   };
@@ -62,7 +60,7 @@ export class ResizeColumnDirective implements OnInit {
   onMouseUp = (event: MouseEvent) => {
     if (this.pressed) {
       this.pressed = false;
-      this.renderer.removeClass(this.table, "resizing");
+      this.renderer.removeClass(this.table, 'resizing');
     }
   };
 }

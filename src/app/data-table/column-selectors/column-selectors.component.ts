@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ColumnInfo} from '../mat-data-table/mat-table-configuration.model';
+import {DataTableService} from '../data-table.service';
 
 @Component({
   selector: 'app-column-selectors',
@@ -7,9 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ColumnSelectorsComponent implements OnInit {
 
-  constructor() { }
+  columnInfoList: ColumnInfo[];
+  selectedColumnInfoList: ColumnInfo[];
 
-  ngOnInit(): void {
+  constructor(private dataTableService: DataTableService) {
   }
 
+  ngOnInit(): void {
+    this.dataTableService.getConfig$().subscribe(value => {
+      this.columnInfoList = value.columnInfoList;
+      this.selectedColumnInfoList = Array.from(this.columnInfoList);
+    });
+  }
+
+
+  onClick($event: any, pos: number, col: ColumnInfo) {
+    let isChecked = $event.target.checked;
+    if (isChecked) {
+      this.selectedColumnInfoList.splice(pos, 0, col);
+    } else {
+      this.selectedColumnInfoList.splice(pos, 1);
+    }
+    this.dataTableService.updateSelectedColumns$(this.selectedColumnInfoList);
+  }
 }
