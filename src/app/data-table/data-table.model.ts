@@ -1,4 +1,4 @@
-export class MatTableConfiguration<T> {
+export class DataTableConfiguration<T> {
   data: T[] = [];
   columnInfoList: ColumnInfo[] = [];
 }

@@ -11,7 +11,10 @@
       ]
     },
     "views": {
-      "int": { "min": 0, "max": 9000 }
+      "int": {
+        "min": 0,
+        "max": 9000
+      }
     },
     "published": {
       "boolean": {}

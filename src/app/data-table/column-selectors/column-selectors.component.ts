@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {ColumnInfo} from '../mat-data-table/mat-table-configuration.model';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ColumnInfo} from '../data-table.model';
 import {DataTableService} from '../data-table.service';
 
 @Component({
@@ -9,19 +9,23 @@ import {DataTableService} from '../data-table.service';
 })
 export class ColumnSelectorsComponent implements OnInit {
 
-  columnInfoList: ColumnInfo[];
-  selectedColumnInfoList: ColumnInfo[];
+  columnInfoList: ColumnInfo[] = [];
+  selectedColumnInfoList: ColumnInfo[] = [];
 
-  constructor(private dataTableService: DataTableService) {
+  constructor(private dataTableService: DataTableService,
+              private changeDetRef: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
-    this.dataTableService.getConfig$().subscribe(value => {
-      this.columnInfoList = value.columnInfoList;
-      this.selectedColumnInfoList = Array.from(this.columnInfoList);
-    });
+    this.dataTableService.getConfig$()
+      .subscribe(value => {
+        if (!!value) {
+          this.columnInfoList = value.columnInfoList;
+          this.selectedColumnInfoList = Array.from(this.columnInfoList);
+          this.changeDetRef.detectChanges();
+        }
+      });
   }
-
 
   onClick($event: any, pos: number, col: ColumnInfo) {
     let isChecked = $event.target.checked;

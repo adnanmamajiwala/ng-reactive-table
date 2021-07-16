@@ -1,4 +1,4 @@
-<div class="mat-elevation-z8">
+<div class="mat-elevation-z8" *ngIf="!!dataSource">
   <table mat-table [dataSource]="dataSource">
 
     <ng-container matColumnDef="{{col.name}}" *ngFor="let col of columnInfoList; let i=index">

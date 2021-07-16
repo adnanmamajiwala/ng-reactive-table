@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { MatDataTableComponent } from './mat-data-table.component';
+import {MatDataTableComponent} from './mat-data-table.component';
 
 describe('MatDataTableComponent', () => {
   let component: MatDataTableComponent;
@@ -8,9 +8,9 @@ describe('MatDataTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MatDataTableComponent ]
+      declarations: [MatDataTableComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

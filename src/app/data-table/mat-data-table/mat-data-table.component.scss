@@ -1,11 +1,13 @@
 .mat-table {
   width: 100%;
+
   &.resizing {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
     cursor: col-resize;
   }
+
   .mat-cell {
     span {
       display: block;
@@ -13,8 +15,10 @@
       text-overflow: ellipsis;
     }
   }
+
   .mat-header-cell {
     position: relative;
+
     &:not(:last-child) {
       .resize-holder {
         cursor: col-resize;
@@ -27,9 +31,11 @@
       }
     }
   }
+
   .mat-cell,
   .mat-header-cell {
     border-right: 1px solid rgba(0, 0, 0, 0.12);
+
     &:not(:nth-child(1)) {
       padding: 0 10px;
     }

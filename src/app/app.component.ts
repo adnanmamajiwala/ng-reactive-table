@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {MatTableConfiguration} from './data-table/mat-data-table/mat-table-configuration.model';
+import {DataTableConfiguration} from './data-table/data-table.model';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +8,7 @@ import {MatTableConfiguration} from './data-table/mat-data-table/mat-table-confi
 })
 export class AppComponent implements OnInit{
   title = 'ng-reactive-table';
-  config = new MatTableConfiguration<PeriodicElement>()
+  config = new DataTableConfiguration<PeriodicElement>()
 
   constructor() {
   }

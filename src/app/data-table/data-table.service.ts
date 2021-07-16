@@ -1,23 +1,23 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {ColumnInfo, MatTableConfiguration} from './mat-data-table/mat-table-configuration.model';
+import {ColumnInfo, DataTableConfiguration} from './data-table.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataTableService {
 
-  private config$ = new BehaviorSubject<MatTableConfiguration<any>>(null as any);
+  private config$ = new BehaviorSubject<DataTableConfiguration<any>>(null as any);
   private selectedColumns$ = new BehaviorSubject<ColumnInfo[]>([]);
 
   constructor() {
   }
 
-  getConfig$(): Observable<MatTableConfiguration<any>> {
+  getConfig$(): Observable<DataTableConfiguration<any>> {
     return this.config$.asObservable();
   }
 
-  updateConfig$(value: MatTableConfiguration<any>){
+  updateConfig$(value: DataTableConfiguration<any>) {
     this.config$.next(value);
     this.updateSelectedColumns$(value.columnInfoList);
   }
