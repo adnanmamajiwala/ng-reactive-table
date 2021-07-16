@@ -1,11 +1,6 @@
 import {CollectionViewer, DataSource} from '@angular/cdk/collections';
 import {BehaviorSubject, Observable} from 'rxjs';
 
-export class DataTableConfiguration<T> {
-  data: T[] = [];
-  columnInfoList: ColumnInfo[] = [];
-}
-
 export class ColumnInfo {
   displayText: string;
   name: string;
@@ -20,6 +15,7 @@ export abstract class CustomDataSource<T> implements DataSource<T> {
   public loading$ = this.loadingSubject.asObservable();
 
   abstract load(filter: string, sortDirection: string, pageIndex: number, pageSize: number): void;
+
   abstract setupColumnInfo(): ColumnInfo[];
 
   protected constructor() {
