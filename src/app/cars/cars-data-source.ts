@@ -29,7 +29,7 @@ export class CarsDataSource extends CustomDataSource<Car> {
       {name: 'fuel', displayText: 'Fuel'},
       {name: 'color', displayText: 'Color'},
       {name: 'vin', displayText: 'VIN'},
-      {name: 'createdAt', displayText: 'Launch Date'}
+      {name: 'createdAt', displayText: 'Launch Date'},
     ];
   }
 

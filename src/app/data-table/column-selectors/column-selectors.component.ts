@@ -13,7 +13,7 @@ export class ColumnSelectorsComponent implements OnInit {
   columnInfoList: ColumnInfo[] = [];
   selectedColumnInfoList: ColumnInfo[] = [];
 
-  constructor(private dataTableService: DataTableService,
+  constructor(private dataTableService: DataTableService<any>,
               private changeDetRef: ChangeDetectorRef) {
   }
 

@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit, Output, ViewChild} from '@angular/core';
 import {ColumnInfo, CustomDataSource} from '../data-table.model';
 import {DataTableService} from '../data-table.service';
 import {MatPaginator} from '@angular/material/paginator';
@@ -21,7 +21,7 @@ export class MatDataTableComponent implements OnInit, AfterViewInit {
   columnInfoList: ColumnInfo[] = [];
   propertyNames: string[] = [];
 
-  constructor(private dataTableService: DataTableService) {
+  constructor(private dataTableService: DataTableService<any>) {
   }
 
   ngOnInit(): void {
@@ -64,4 +64,7 @@ export class MatDataTableComponent implements OnInit, AfterViewInit {
       this.paginator.pageSize);
   }
 
+  rowClicked(row: any) {
+    this.dataTableService.updateRowClicked(row);
+  }
 }

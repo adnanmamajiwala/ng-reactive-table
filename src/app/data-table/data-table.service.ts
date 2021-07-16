@@ -5,19 +5,20 @@ import {ColumnInfo, CustomDataSource} from './data-table.model';
 @Injectable({
   providedIn: 'root'
 })
-export class DataTableService {
+export class DataTableService<T> {
 
-  private customDataSourceSubject = new BehaviorSubject<CustomDataSource<any>>(null as any);
+  private customDataSourceSubject = new BehaviorSubject<CustomDataSource<T>>(null as any);
   private selectedColumnsSubject = new BehaviorSubject<ColumnInfo[]>([]);
+  private rowClickedSubject = new BehaviorSubject<T>(null as any);
 
   constructor() {
   }
 
-  customDataSource$(): Observable<CustomDataSource<any>> {
+  customDataSource$(): Observable<CustomDataSource<T>> {
     return this.customDataSourceSubject.asObservable();
   }
 
-  updateCustomDataSource$(value: CustomDataSource<any>) {
+  updateCustomDataSource$(value: CustomDataSource<T>) {
     this.customDataSourceSubject.next(value);
     this.updateSelectedColumns$(value.columnInfoList);
   }
@@ -30,4 +31,11 @@ export class DataTableService {
     this.selectedColumnsSubject.next(value);
   }
 
+  rowClicked$() : Observable<T> {
+    return this.rowClickedSubject.asObservable();
+  }
+
+  updateRowClicked(value: T) {
+    this.rowClickedSubject.next(value);
+  }
 }

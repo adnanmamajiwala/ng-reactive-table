@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {CarsService} from './cars.service';
 import {DataTableService} from '../data-table/data-table.service';
 import {CarsDataSource} from './cars-data-source';
+import {Car} from "./car.model";
 
 @Component({
   selector: 'app-cars',
@@ -14,7 +15,7 @@ import {CarsDataSource} from './cars-data-source';
 export class CarsComponent implements OnInit {
 
   constructor(private carService: CarsService,
-              private dataTableService: DataTableService) {
+              private dataTableService: DataTableService<Car>) {
   }
 
   ngOnInit(): void {
