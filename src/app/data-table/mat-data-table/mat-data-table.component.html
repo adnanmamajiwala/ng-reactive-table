@@ -1,4 +1,9 @@
 <div class="mat-elevation-z8" *ngIf="!!dataSource">
+
+  <div class="spinner-container" *ngIf="dataSource.loading$ | async">
+    <mat-spinner></mat-spinner>
+  </div>
+
   <table mat-table [dataSource]="dataSource">
 
     <ng-container matColumnDef="{{col.name}}" *ngFor="let col of columnInfoList; let i=index">
@@ -10,5 +15,6 @@
     <tr mat-row *matRowDef="let row; columns: propertyNames;"></tr>
   </table>
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  <mat-paginator [length]="50" [pageSize]="5"
+                 [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>

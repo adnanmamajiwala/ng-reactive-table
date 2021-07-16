@@ -1,15 +1,2 @@
-<ngb-accordion activeIds="columns-panel">
-  <ngb-panel id="columns-panel">
-    <ng-template ngbPanelHeader let-opened="opened">
-      <div class="d-flex align-items-center justify-content-end">
-        <button ngbPanelToggle class="btn">
-          <fa-icon [icon]="['fas', opened ? 'caret-down' : 'caret-up']" [transform]="'rotate(360deg)'"></fa-icon>
-        </button>
-      </div>
-    </ng-template>
-    <ng-template ngbPanelContent>
-      <app-column-selectors></app-column-selectors>
-    </ng-template>
-  </ngb-panel>
-</ngb-accordion>
+<app-column-selectors></app-column-selectors>
 <app-mat-data-table></app-mat-data-table>

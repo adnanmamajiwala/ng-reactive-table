@@ -1,11 +1,12 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {ColumnInfo} from '../data-table.model';
 import {DataTableService} from '../data-table.service';
 
 @Component({
   selector: 'app-column-selectors',
   templateUrl: './column-selectors.component.html',
-  styleUrls: ['./column-selectors.component.scss']
+  styleUrls: ['./column-selectors.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ColumnSelectorsComponent implements OnInit {
 
@@ -28,8 +29,7 @@ export class ColumnSelectorsComponent implements OnInit {
   }
 
   onClick($event: any, pos: number, col: ColumnInfo) {
-    let isChecked = $event.target.checked;
-    if (isChecked) {
+    if ($event.target.checked) {
       this.selectedColumnInfoList.splice(pos, 0, col);
     } else {
       this.selectedColumnInfoList.splice(pos, 1);

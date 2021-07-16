@@ -1,9 +1,21 @@
-<div class="row" *ngIf="!!columnInfoList">
-  <div class="col-auto" *ngFor="let col of columnInfoList; let i=index">
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" [value]="col" checked (click)="onClick($event, i, col)">
-      <label class="form-check-label">{{col.displayText}}</label>
-    </div>
-  </div>
-</div>
-
+<ngb-accordion>
+  <ngb-panel id="columns-panel">
+    <ng-template ngbPanelHeader let-opened="opened">
+      <div class="d-flex align-items-center justify-content-end">
+        <button ngbPanelToggle class="btn">
+          <fa-icon [icon]="['fas', opened ? 'caret-down' : 'cog']"></fa-icon>
+        </button>
+      </div>
+    </ng-template>
+    <ng-template ngbPanelContent>
+      <div class="row" *ngIf="!!columnInfoList">
+        <div class="col-auto" *ngFor="let col of columnInfoList; let i=index">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" [value]="col" checked (click)="onClick($event, i, col)">
+            <label class="form-check-label">{{col.displayText}}</label>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </ngb-panel>
+</ngb-accordion>
