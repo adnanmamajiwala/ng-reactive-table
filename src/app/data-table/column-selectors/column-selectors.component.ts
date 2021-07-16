@@ -17,7 +17,7 @@ export class ColumnSelectorsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dataTableService.getConfig$()
+    this.dataTableService.customDataSource$()
       .subscribe(value => {
         if (!!value) {
           this.columnInfoList = value.columnInfoList;

@@ -1,8 +1,7 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatTableDataSource} from '@angular/material/table';
-import {ColumnInfo} from '../data-table.model';
+import {ColumnInfo, CustomDataSource} from '../data-table.model';
 import {DataTableService} from '../data-table.service';
+import {MatPaginator} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-mat-data-table',
@@ -13,7 +12,8 @@ export class MatDataTableComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  dataSource: MatTableDataSource<any>;
+  dataSource: CustomDataSource<any>;
+
   columnInfoList: ColumnInfo[] = [];
   propertyNames: string[] = [];
 
@@ -21,15 +21,15 @@ export class MatDataTableComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.dataTableService.getConfig$().subscribe(value => {
+    this.dataTableService.customDataSource$().subscribe(value => {
       if (!!value) {
-        this.dataSource = new MatTableDataSource(value.data);
+        this.dataSource = value;
+        this.dataSource.load('', 'asc', 1, 10);
         this.columnInfoList = value.columnInfoList;
-        this.dataSource.paginator = this.paginator;
       }
     });
 
-    this.dataTableService.getSelectColumns$()
+    this.dataTableService.selectedColumns$()
       .subscribe((value: ColumnInfo[]) => {
         if (!!value) {
           this.propertyNames = this.getPropertyNames(value);

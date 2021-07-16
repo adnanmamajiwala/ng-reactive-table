@@ -1,33 +1,33 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {ColumnInfo, DataTableConfiguration} from './data-table.model';
+import {ColumnInfo, CustomDataSource} from './data-table.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataTableService {
 
-  private config$ = new BehaviorSubject<DataTableConfiguration<any>>(null as any);
-  private selectedColumns$ = new BehaviorSubject<ColumnInfo[]>([]);
+  private customDataSourceSubject = new BehaviorSubject<CustomDataSource<any>>(null as any);
+  private selectedColumnsSubject = new BehaviorSubject<ColumnInfo[]>([]);
 
   constructor() {
   }
 
-  getConfig$(): Observable<DataTableConfiguration<any>> {
-    return this.config$.asObservable();
+  customDataSource$(): Observable<CustomDataSource<any>> {
+    return this.customDataSourceSubject.asObservable();
   }
 
-  updateConfig$(value: DataTableConfiguration<any>) {
-    this.config$.next(value);
+  updateCustomDataSource$(value: CustomDataSource<any>) {
+    this.customDataSourceSubject.next(value);
     this.updateSelectedColumns$(value.columnInfoList);
   }
 
-  getSelectColumns$(): Observable<ColumnInfo[]> {
-    return this.selectedColumns$.asObservable();
+  selectedColumns$(): Observable<ColumnInfo[]> {
+    return this.selectedColumnsSubject.asObservable();
   }
 
   updateSelectedColumns$(value: ColumnInfo[]) {
-    this.selectedColumns$.next(value);
+    this.selectedColumnsSubject.next(value);
   }
 
 }
