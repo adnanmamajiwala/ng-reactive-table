@@ -1,10 +1,10 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {ColumnInfo, CustomDataSource} from '../data-table.model';
 import {DataTableService} from '../data-table.service';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
-import {fromEvent, merge} from 'rxjs';
-import {debounceTime, distinctUntilChanged, tap} from 'rxjs/operators';
+import {merge} from 'rxjs';
+import {tap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-mat-data-table',
@@ -14,11 +14,7 @@ import {debounceTime, distinctUntilChanged, tap} from 'rxjs/operators';
 export class MatDataTableComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
-
-
   @ViewChild(MatSort) sort: MatSort;
-
-  @ViewChild('input') input: ElementRef;
 
   dataSource: CustomDataSource<any>;
 
@@ -48,32 +44,21 @@ export class MatDataTableComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
 
-    // this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
+    this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
 
-    // fromEvent(this.input.nativeElement, 'keyup')
-    //   .pipe(
-    //     debounceTime(150),
-    //     distinctUntilChanged(),
-    //     tap(() => {
-    //       this.paginator.pageIndex = 0;
-    //       this.loadLessonsPage();
-    //     })
-    //   )
-    //   .subscribe();
-
-    merge(this.paginator.page)
+    merge(this.sort.sortChange, this.paginator.page)
       .pipe(
-        tap(() => this.loadDataPage())
+        tap(() => {
+          this.loadDataPage();
+        })
       )
       .subscribe();
-
   }
 
   loadDataPage() {
     this.dataSource.load(
-      // this.input.nativeElement.value,
-      '',
-      'asc',
+      this.sort.active,
+      this.sort.direction,
       this.paginator.pageIndex + 1,
       this.paginator.pageSize);
   }

@@ -14,8 +14,8 @@ export class CarsService {
   }
 
   retrieve(page: number = 1, limit: number = 10,
-           sortBy: string = '', order: string = 'asc'): Observable<Car[]> {
-    const url = `${this.endpoint}?page=${page}&limit=${limit}&sortBy=${sortBy}&order=${order}`;
+           sortBy: string = '', sortDirection: string = 'asc'): Observable<Car[]> {
+    const url = `${this.endpoint}?page=${page}&limit=${limit}&sortBy=${sortBy}&order=${sortDirection}`;
     return this.httpClient.get<Car[]>(url);
   }
 }

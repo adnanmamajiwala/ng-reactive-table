@@ -10,9 +10,9 @@ export class CarsDataSource extends CustomDataSource<Car> {
     super();
   }
 
-  load(filter: string, sortDirection: string, pageIndex: number, pageSize: number): void {
+  load(sortBy: string, sortDirection: string, pageIndex: number, pageSize: number): void {
     this.loadingSubject.next(true);
-    this.carsService.retrieve(pageIndex, pageSize, '', sortDirection)
+    this.carsService.retrieve(pageIndex, pageSize, sortBy, sortDirection)
       .pipe(
         catchError(() => of([])),
         finalize(() => this.loadingSubject.next(false))
