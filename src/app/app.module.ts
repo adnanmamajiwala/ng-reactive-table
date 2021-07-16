@@ -23,6 +23,7 @@ import {fas} from '@fortawesome/free-solid-svg-icons';
 import {CarsComponent} from './cars/cars.component';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
+import {EmployeesComponent} from './employees/employees.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {FormsModule} from '@angular/forms';
     MatDataTableComponent,
     ResizeColumnDirective,
     ColumnSelectorsComponent,
-    CarsComponent
+    CarsComponent,
+    EmployeesComponent
   ],
   imports: [
     BrowserModule,

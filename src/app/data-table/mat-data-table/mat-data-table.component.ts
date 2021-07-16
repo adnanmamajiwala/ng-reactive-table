@@ -59,6 +59,7 @@ export class MatDataTableComponent implements OnInit, AfterViewInit {
     this.dataSource.load(
       this.sort.active,
       this.sort.direction,
+      // '','asc',
       this.paginator.pageIndex + 1,
       this.paginator.pageSize);
   }

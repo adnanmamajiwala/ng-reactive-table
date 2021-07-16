@@ -39,6 +39,7 @@ export class ResizeColumnDirective implements OnInit {
   onMouseMove = (event: MouseEvent) => {
     const offset = 35;
     if (this.pressed && event.buttons) {
+      console.log('on pressed onMouseMove')
       this.renderer.addClass(this.table, 'resizing');
 
       // Calculate width of column

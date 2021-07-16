@@ -5,10 +5,11 @@
   </div>
 
   <table mat-table [dataSource]="dataSource"
-         matSort [matSortActive]="columnInfoList[0].name" matSortDirection="asc" matSortDisableClear>
+         matSort matSortDirection="asc" matSortDisableClear>
 
     <ng-container matColumnDef="{{col.name}}" *ngFor="let col of columnInfoList; let i=index">
-      <th mat-header-cell mat-sort-header *matHeaderCellDef [resizeColumn]="i">{{col.displayText}}</th>
+<!--      mat-sort-header -->
+      <th mat-header-cell  *matHeaderCellDef [resizeColumn]="i">{{col.displayText}}</th>
       <td mat-cell *matCellDef="let element"> {{element[col.name]}} </td>
     </ng-container>
 

@@ -6,16 +6,19 @@ import {CarsDataSource} from './cars-data-source';
 @Component({
   selector: 'app-cars',
   templateUrl: './cars.component.html',
-  styleUrls: ['./cars.component.scss']
+  styleUrls: ['./cars.component.scss'],
+  providers: [
+    DataTableService
+  ]
 })
 export class CarsComponent implements OnInit {
 
   constructor(private carService: CarsService,
-              private dataService: DataTableService) {
+              private dataTableService: DataTableService) {
   }
 
   ngOnInit(): void {
-    this.dataService.updateCustomDataSource$(new CarsDataSource(this.carService));
+    this.dataTableService.updateCustomDataSource$(new CarsDataSource(this.carService));
   }
 
 }

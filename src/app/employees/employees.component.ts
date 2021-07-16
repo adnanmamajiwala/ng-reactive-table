@@ -1,0 +1,24 @@
+import {Component, OnInit} from '@angular/core';
+import {DataTableService} from '../data-table/data-table.service';
+import {EmployeesService} from './employees.service';
+import {EmployeesDataSource} from './employees-data-source';
+
+@Component({
+  selector: 'app-employees',
+  templateUrl: './employees.component.html',
+  styleUrls: ['./employees.component.scss'],
+  providers: [
+    DataTableService
+  ]
+})
+export class EmployeesComponent implements OnInit {
+
+  constructor(private dataTableService: DataTableService,
+              private employeesService: EmployeesService) {
+  }
+
+  ngOnInit(): void {
+    this.dataTableService.updateCustomDataSource$(new EmployeesDataSource(this.employeesService));
+  }
+
+}
