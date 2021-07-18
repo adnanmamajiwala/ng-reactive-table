@@ -22,11 +22,11 @@ export class EmployeesDataSource extends CustomDataSource<Employee> {
 
   setupColumnInfo(): ColumnInfo[] {
     return [
-      {name: 'id', displayText: 'Id'},
-      {name: 'name', displayText: 'Name'},
-      {name: 'avatar', displayText: 'Avatar'},
-      {name: 'gender', displayText: 'Gender'},
-      {name: 'createdAt', displayText: 'Join Date'}
+      {name: 'id', displayText: 'Id', selected: true},
+      {name: 'name', displayText: 'Name', selected: true},
+      {name: 'avatar', displayText: 'Avatar', selected: true},
+      {name: 'gender', displayText: 'Gender', selected: true},
+      {name: 'createdAt', displayText: 'Join Date', selected: true}
     ];
   }
 

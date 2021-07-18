@@ -1,21 +1,27 @@
-<ngb-accordion>
-  <ngb-panel id="columns-panel">
-    <ng-template ngbPanelHeader let-opened="opened">
-      <div class="d-flex align-items-center justify-content-end">
-        <button ngbPanelToggle class="btn">
-          <fa-icon [icon]="['fas', opened ? 'caret-down' : 'cog']"></fa-icon>
-        </button>
-      </div>
-    </ng-template>
-    <ng-template ngbPanelContent>
-      <div class="row" *ngIf="!!columnInfoList">
-        <div class="col-auto" *ngFor="let col of columnInfoList; let i=index">
+<div class="row">
+  <div class="col-11">
+    <div class="" #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+      <div *ngIf="!!columnInfoList" cdkDropList cdkDropListOrientation="horizontal"
+           class="d-flex flex-wrap" (cdkDropListDropped)="drop($event)">
+        <div class="shadow p-2 pb-1 ms-1 me-1 mb-3 bg-body rounded"
+             *ngFor="let col of columnInfoList; let i=index" cdkDrag>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" [value]="col" checked (click)="onClick($event, i, col)">
-            <label class="form-check-label">{{col.displayText}}</label>
+            <input class="form-check-input" type="checkbox"
+                   [value]="col"
+                   [checked]=col.selected
+                   (click)="onClick($event, i, col)">
+            <label class="form-check-label grab">{{col.displayText}}</label>
           </div>
         </div>
       </div>
-    </ng-template>
-  </ngb-panel>
-</ngb-accordion>
+    </div>
+  </div>
+  <div class="col-1 align-top">
+    <button class="btn btn-link float-end" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed"
+            aria-controls="collapseExample">
+      <fa-icon [icon]="['fas', !isCollapsed ? 'caret-down' : 'cog']"></fa-icon>
+    </button>
+  </div>
+</div>
+
+

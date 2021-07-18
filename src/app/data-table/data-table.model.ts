@@ -4,6 +4,7 @@ import {BehaviorSubject, Observable} from 'rxjs';
 export class ColumnInfo {
   displayText: string;
   name: string;
+  selected = true;
 }
 
 export abstract class CustomDataSource<T> implements DataSource<T> {
@@ -23,7 +24,6 @@ export abstract class CustomDataSource<T> implements DataSource<T> {
   }
 
   connect(collectionViewer: CollectionViewer): Observable<T[]> {
-    console.log('Connecting data source');
     return this.dataSubject.asObservable();
   }
 

@@ -22,14 +22,14 @@ export class CarsDataSource extends CustomDataSource<Car> {
 
   setupColumnInfo(): ColumnInfo[] {
     return [
-      {name: 'id', displayText: 'Id'},
-      {name: 'manufacture', displayText: 'Manufacture'},
-      {name: 'model', displayText: 'Model'},
-      {name: 'type', displayText: 'Type'},
-      {name: 'fuel', displayText: 'Fuel'},
-      {name: 'color', displayText: 'Color'},
-      {name: 'vin', displayText: 'VIN'},
-      {name: 'createdAt', displayText: 'Launch Date'},
+      {name: 'id', displayText: 'Id', selected: true},
+      {name: 'manufacture', displayText: 'Manufacture', selected: true},
+      {name: 'model', displayText: 'Model', selected: true},
+      {name: 'type', displayText: 'Type', selected: true},
+      {name: 'fuel', displayText: 'Fuel', selected: true},
+      {name: 'color', displayText: 'Color', selected: true},
+      {name: 'vin', displayText: 'VIN', selected: true},
+      {name: 'createdAt', displayText: 'Launch Date', selected: false},
     ];
   }
 

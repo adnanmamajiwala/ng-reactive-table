@@ -80,12 +80,12 @@
 }
 
 .table-responsive::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.15);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.20);
+  border-radius: 100px;
 }
 
 .table-responsive::-webkit-scrollbar-thumb {
   border: 2px solid rgba(0,0,0,0.2);
-  //background: #8070D4;
   background: rgb(135, 187, 255);
   border-radius: 100px;
 }

@@ -24,6 +24,7 @@ import {CarsComponent} from './cars/cars.component';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {EmployeesComponent} from './employees/employees.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import {EmployeesComponent} from './employees/employees.component';
     MatRippleModule,
     MatSortModule,
     MatTableModule,
+    DragDropModule,
     FontAwesomeModule
   ],
   providers: [],
