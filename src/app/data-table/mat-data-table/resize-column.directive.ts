@@ -23,13 +23,6 @@ export class ResizeColumnDirective implements OnInit {
     this.table = this.renderer.parentNode(thead);
 
     const resizer = this.renderer.createElement('span');
-    resizer.style.cursor= 'col-resize';
-    resizer.style.width= '20px';
-    resizer.style.height= '100%';
-    resizer.style.position= 'absolute';
-    resizer.style.right= '-10px';
-    resizer.style.top= '0';
-    resizer.style.zIndex = '1';
     this.renderer.addClass(resizer, 'resize-holder');
     this.renderer.appendChild(this.column, resizer);
     this.renderer.listen(resizer, 'mousedown', this.onMouseDown);

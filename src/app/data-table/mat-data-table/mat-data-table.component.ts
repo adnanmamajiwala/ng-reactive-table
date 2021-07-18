@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, Output, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {ColumnInfo, CustomDataSource} from '../data-table.model';
 import {DataTableService} from '../data-table.service';
 import {MatPaginator} from '@angular/material/paginator';
@@ -9,7 +9,8 @@ import {tap} from 'rxjs/operators';
 @Component({
   selector: 'app-mat-data-table',
   templateUrl: './mat-data-table.component.html',
-  styleUrls: ['./mat-data-table.component.scss']
+  styleUrls: ['./mat-data-table.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class MatDataTableComponent implements OnInit, AfterViewInit {
 

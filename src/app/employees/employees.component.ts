@@ -1,13 +1,14 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {DataTableService} from '../data-table/data-table.service';
 import {EmployeesService} from './employees.service';
-import {Employee} from "./employee.model";
-import {EmployeesDataSource} from "./employees-data-source";
+import {Employee} from './employee.model';
+import {EmployeesDataSource} from './employees-data-source';
 
 @Component({
   selector: 'app-employees',
   templateUrl: './employees.component.html',
   styleUrls: ['./employees.component.scss'],
+  encapsulation: ViewEncapsulation.None,
   providers: [
     DataTableService
   ]
