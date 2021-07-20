@@ -18,7 +18,6 @@ import {ResizeColumnDirective} from './data-table/mat-data-table/resize-column.d
 import {ColumnSelectorsComponent} from './data-table/column-selectors/column-selectors.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {FaIconLibrary, FontAwesomeModule} from '@fortawesome/angular-fontawesome';
-import {far} from '@fortawesome/free-regular-svg-icons';
 import {faCaretDown, faCog, fas, faSort, faSortDown, faSortUp} from '@fortawesome/free-solid-svg-icons';
 import {CarsComponent} from './cars/cars.component';
 import {HttpClientModule} from '@angular/common/http';
@@ -59,7 +58,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 })
 export class AppModule {
   constructor(library: FaIconLibrary) {
-    library.addIconPacks(fas, far);
+    library.addIconPacks(fas);
     library.addIcons(faSort, faCog, faSortUp, faSortDown, faCaretDown);
   }
 }
