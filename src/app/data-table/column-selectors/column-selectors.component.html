@@ -1,16 +1,19 @@
 <div class="row">
   <div class="col-11">
-    <div class="" #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
-      <div *ngIf="!!columnInfoList" cdkDropList cdkDropListOrientation="horizontal"
-           class="d-flex flex-wrap" (cdkDropListDropped)="drop($event)">
-        <div class="shadow p-2 pb-1 ms-1 me-1 mb-3 bg-body rounded"
-             *ngFor="let col of columnInfoList; let i=index" cdkDrag>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox"
-                   [value]="col"
-                   [checked]=col.selected
-                   (click)="onClick($event, i, col)">
-            <label class="form-check-label grab">{{col.displayText}}</label>
+    <div class="row" #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+      <div *ngIf="!!columnInfoList" cdkDropListGroup class="col-auto d-flex flex-wrap">
+        <div cdkDropList [cdkDropListData]="i" *ngFor="let col of columnInfoList; let i=index">
+          <div class="shadow item-card bg-body rounded"
+               cdkDrag [cdkDragData]="i"
+               (cdkDragEntered)="drag($event)" (cdkDragEnded)="drop()">
+            <div class="form-check-inline">
+              <input class="form-check-input ms-1 me-2 mb-1 align-top" type="checkbox"
+                     [value]="col"
+                     [checked]=col.selected
+                     (click)="onClick($event, i, col)">
+              <label class="form-check-label grab" >{{col.displayText}}</label>
+            </div>
+            <i class="bi bi-grip-vertical grab"></i>
           </div>
         </div>
       </div>
