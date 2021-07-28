@@ -16,7 +16,6 @@ export abstract class CustomDataSource<T> implements DataSource<T> {
   public loading$ = this.loadingSubject.asObservable();
 
   abstract load(sortBy: string, sortDirection: string, pageIndex: number, pageSize: number): void;
-
   abstract setupColumnInfo(): ColumnInfo[];
 
   protected constructor() {

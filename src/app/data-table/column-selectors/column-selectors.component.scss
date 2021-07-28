@@ -1,5 +1,19 @@
+h5 {
+  font-size: 1.25rem !important;
+  font-weight: 500 !important;
+  margin: 0 !important;
+}
+
 .btn:focus {
   box-shadow: none;
+}
+
+html.cdk-global-scrollblock {
+  position: initial !important;
+}
+
+html.cdk-global-scrollblock body {
+  position: fixed;
 }
 
 .cdk-drag-preview {
@@ -35,6 +49,10 @@
   margin-bottom: 0.75rem;
   justify-content: space-between;
   display: flex;
+}
+
+.cdk-drag{
+  z-index: 10000 !important;
 }
 
 .item-card-active {

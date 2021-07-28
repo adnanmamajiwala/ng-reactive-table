@@ -1,13 +1,13 @@
-import {ChangeDetectorRef, Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {ChangeDetectorRef, Component, ElementRef, OnInit, TemplateRef, ViewEncapsulation} from '@angular/core';
 import {ColumnInfo} from '../data-table.model';
 import {DataTableService} from '../data-table.service';
 import {CdkDragEnter, moveItemInArray} from '@angular/cdk/drag-drop';
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-column-selectors',
   templateUrl: './column-selectors.component.html',
   styleUrls: ['./column-selectors.component.scss'],
-  encapsulation: ViewEncapsulation.None
 })
 export class ColumnSelectorsComponent implements OnInit {
 
@@ -15,6 +15,7 @@ export class ColumnSelectorsComponent implements OnInit {
   columnInfoList: ColumnInfo[] = [];
 
   constructor(private dataTableService: DataTableService<any>,
+              private modalService: NgbModal,
               private changeDetRef: ChangeDetectorRef) {
   }
 
@@ -40,6 +41,10 @@ export class ColumnSelectorsComponent implements OnInit {
 
   drop(){
     this.updateDataTable();
+  }
+
+  open(content: TemplateRef<any>) {
+    this.modalService.open(content);
   }
 
   private updateDataTable(): void {
