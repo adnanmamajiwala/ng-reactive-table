@@ -3,7 +3,7 @@ import {TestBed} from '@angular/core/testing';
 import {DataTableService} from './data-table.service';
 
 describe('DataTableService', () => {
-  let service: DataTableService;
+  let service: DataTableService<any>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
