@@ -7,7 +7,7 @@
   <div class="modal-body">
     <div class="row">
       <div *ngIf="!!columnInfoList">
-        <div cdkDropList (cdkDropListDropped)="drop()">
+        <div cdkDropList (cdkDropListDropped)="drop($event)">
           <ng-container *ngFor="let col of columnInfoList; let i=index">
             <div class="row">
               <div class="col-auto align-self-center pb-2">{{i+1}}</div>

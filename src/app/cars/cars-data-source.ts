@@ -30,6 +30,15 @@ export class CarsDataSource extends CustomDataSource<Car> {
       {name: 'color', displayText: 'Color', selected: true},
       {name: 'vin', displayText: 'VIN', selected: true},
       {name: 'createdAt', displayText: 'Launch Date', selected: false},
+      {name: 'maxSpeed', displayText: 'Max Speed', selected: false},
+      {name: 'gears', displayText: 'Gears', selected: false},
+      {name: 'horsePower', displayText: 'Horse Power', selected: false},
+      {name: 'engine', displayText: 'Engine', selected: false},
+      {name: 'sunroof', displayText: 'Sunroof', selected: false},
+      {name: 'electric', displayText: 'Electric', selected: false},
+      {name: 'gas', displayText: 'Gas', selected: false},
+      {name: 'hybrid', displayText: 'Hybrid', selected: false},
+      {name: 'limitedEdition', displayText: 'Limited Edition', selected: false},
     ];
   }
 

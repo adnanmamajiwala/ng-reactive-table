@@ -1,7 +1,7 @@
-import {ChangeDetectorRef, Component, ElementRef, OnInit, TemplateRef, ViewEncapsulation} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit, TemplateRef} from '@angular/core';
 import {ColumnInfo} from '../data-table.model';
 import {DataTableService} from '../data-table.service';
-import {CdkDragEnter, moveItemInArray} from '@angular/cdk/drag-drop';
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
@@ -11,7 +11,6 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 })
 export class ColumnSelectorsComponent implements OnInit {
 
-  isCollapsed = false;
   columnInfoList: ColumnInfo[] = [];
 
   constructor(private dataTableService: DataTableService<any>,
@@ -35,16 +34,13 @@ export class ColumnSelectorsComponent implements OnInit {
     this.updateDataTable();
   }
 
-  drag(event: CdkDragEnter<any>) {
-    moveItemInArray(this.columnInfoList, event.item.data, event.container.data);
-  }
-
-  drop(){
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.columnInfoList, event.previousIndex, event.currentIndex);
     this.updateDataTable();
   }
 
   open(content: TemplateRef<any>) {
-    this.modalService.open(content);
+     this.modalService.open(content);
   }
 
   private updateDataTable(): void {
