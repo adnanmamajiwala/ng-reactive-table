@@ -1,7 +1,7 @@
 import {ChangeDetectorRef, Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {ColumnInfo} from '../data-table.model';
 import {DataTableService} from '../data-table.service';
-import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import {CdkDragEnter, moveItemInArray} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-column-selectors',
@@ -34,9 +34,12 @@ export class ColumnSelectorsComponent implements OnInit {
     this.updateDataTable();
   }
 
-  drop(event: CdkDragDrop<ColumnInfo[]>) {
-    moveItemInArray(this.columnInfoList, event.previousIndex, event.currentIndex);
-    this.updateDataTable()
+  drag(event: CdkDragEnter<any>) {
+    moveItemInArray(this.columnInfoList, event.item.data, event.container.data);
+  }
+
+  drop(){
+    this.updateDataTable();
   }
 
   private updateDataTable(): void {

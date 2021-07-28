@@ -18,10 +18,28 @@
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
-.grab:hover {
-  cursor: grab !important;
+.grab {
+  &:hover {
+    cursor: grab !important;
+  }
+
+  &:active {
+    cursor: grabbing !important;
+  }
 }
 
-.grab:active {
+.item-card {
+  padding: 0.5rem;
+  margin-right: 0.25rem;
+  margin-left: 0.25rem;
+  margin-bottom: 0.75rem;
+  justify-content: space-between;
+  display: flex;
+}
+
+.item-card-active {
+  background-color: grey !important;
   cursor: grabbing !important;
 }
+
+
