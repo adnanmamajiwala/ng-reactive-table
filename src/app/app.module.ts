@@ -25,11 +25,13 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {EmployeesComponent} from './employees/employees.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {far} from '@fortawesome/free-regular-svg-icons';
-import { EmployeeCardComponent } from './employees/employee-card/employee-card.component';
-import { DateSelectorComponent } from './date-selector/date-selector.component';
+import {EmployeeCardComponent} from './employees/employee-card/employee-card.component';
+import {DateSelectorComponent} from './date-selector/date-selector.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatInputModule} from "@angular/material/input";
+import {SmallLargeChartComponent} from './small-large-chart/small-large-chart.component';
+import {ChartsModule} from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,8 @@ import {MatInputModule} from "@angular/material/input";
     CarsComponent,
     EmployeesComponent,
     EmployeeCardComponent,
-    DateSelectorComponent
+    DateSelectorComponent,
+    SmallLargeChartComponent
   ],
   imports: [
     BrowserModule,
@@ -65,6 +68,7 @@ import {MatInputModule} from "@angular/material/input";
     MatNativeDateModule,
     MatDatepickerModule,
     ReactiveFormsModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
