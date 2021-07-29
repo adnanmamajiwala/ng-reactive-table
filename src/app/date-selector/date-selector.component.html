@@ -6,7 +6,6 @@
     <mat-datepicker #dp
                     startView="year"
                     (opened)="streamOpened()"
-                    (yearSelected)="chosenYearHandler($event)"
                     (monthSelected)="chosenMonthHandler($event, dp)"
                     disabled="false"
                     panelClass="example-month-picker">

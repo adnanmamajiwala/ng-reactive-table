@@ -12,10 +12,10 @@ const moment = _rollupMoment || _moment;
 
 export const MY_FORMATS = {
   parse: {
-    dateInput: 'MM/YYYY',
+    dateInput: 'MMM - YYYY',
   },
   display: {
-    dateInput: 'MM/YYYY',
+    dateInput: 'MMM - YYYY',
     monthYearLabel: 'MMM YYYY',
     dateA11yLabel: 'LL',
     monthYearA11yLabel: 'MMMM YYYY',
@@ -47,20 +47,13 @@ export class DateSelectorComponent implements OnInit {
     const currentYear = new Date().getFullYear();
     const currentMonth = new Date().getMonth();
     this.minDate = new Date(currentYear - 2, currentMonth, 1);
-    this.maxDate = new Date();
-    // this.dp
-
-  }
-
-  chosenYearHandler(normalizedYear: Moment) {
-    const ctrlValue = this.date.value;
-    ctrlValue.year(normalizedYear.year());
-    this.date.setValue(ctrlValue);
+    this.maxDate = new Date(currentYear, currentMonth - 1, 1);
   }
 
   chosenMonthHandler(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>) {
     const ctrlValue = this.date.value;
     ctrlValue.month(normalizedMonth.month());
+    ctrlValue.year(normalizedMonth.year());
     this.date.setValue(ctrlValue);
     datepicker.close();
     // console.log(this.date.value);
