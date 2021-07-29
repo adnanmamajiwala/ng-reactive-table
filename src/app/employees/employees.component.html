@@ -1,18 +1,6 @@
 <app-data-table></app-data-table>
 
 <ng-template #content let-modal>
-  <div class="modal-header" ngbAutofocus>
-    <h5 class="modal-title" id="modal-basic-title">Employee Info</h5>
-    <button type="button" class="btn-close" (click)="modal.dismiss()">
-    </button>
-  </div>
-  <div class="modal-body">
-    <div class="row align-self-center">
-      <img [src]="selectedEmployee.avatar" [alt]="selectedEmployee.name" style="width:100%">
-      <h1>{{selectedEmployee.name}}</h1>
-      <p class="title">Employee ID - {{selectedEmployee.id}}</p>
-      <p>Gender - {{selectedEmployee.gender}}</p>
-      <p>Joined on {{selectedEmployee.createdAt | date:'mediumDate'}}</p>
-    </div>
-  </div>
+  <app-employee-card [employee]="selectedEmployee"
+                     (close)="modal.dismiss()"></app-employee-card>
 </ng-template>

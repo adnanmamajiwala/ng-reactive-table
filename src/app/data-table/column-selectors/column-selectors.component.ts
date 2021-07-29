@@ -2,7 +2,7 @@ import {ChangeDetectorRef, Component, OnInit, TemplateRef} from '@angular/core';
 import {ColumnInfo} from '../data-table.model';
 import {DataTableService} from '../data-table.service';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
-import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-column-selectors',
@@ -40,7 +40,7 @@ export class ColumnSelectorsComponent implements OnInit {
   }
 
   open(content: TemplateRef<any>) {
-     this.modalService.open(content);
+    this.modalService.open(content, {scrollable: true});
   }
 
   private updateDataTable(): void {

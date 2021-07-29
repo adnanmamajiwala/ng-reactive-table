@@ -3,7 +3,7 @@ import {DataTableService} from '../data-table/data-table.service';
 import {EmployeesService} from './employees.service';
 import {Employee} from './employee.model';
 import {EmployeesDataSource} from './employees-data-source';
-import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-employees',
@@ -16,7 +16,7 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 })
 export class EmployeesComponent implements OnInit {
 
-  @ViewChild('content') content: ElementRef
+  @ViewChild('content') content: ElementRef;
   selectedEmployee: Employee;
 
   constructor(private dataTableService: DataTableService<Employee>,
@@ -30,7 +30,7 @@ export class EmployeesComponent implements OnInit {
       if (!!value) {
         console.log('EmployeesComponent', value);
         this.selectedEmployee = value;
-        this.modalService.open(this.content);
+        this.modalService.open(this.content, {size: 'sm'});
       }
     });
   }

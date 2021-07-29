@@ -24,7 +24,7 @@ export class EmployeesDataSource extends CustomDataSource<Employee> {
     return [
       {name: 'id', displayText: 'Id', selected: true},
       {name: 'name', displayText: 'Name', selected: true},
-      {name: 'avatar', displayText: 'Avatar', selected: true},
+      {name: 'avatar', displayText: 'Image Url', selected: true},
       {name: 'gender', displayText: 'Gender', selected: true},
       {name: 'createdAt', displayText: 'Join Date', selected: true}
     ];

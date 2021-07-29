@@ -3,7 +3,7 @@ export class Employee {
   name: string;
   avatar: string;
   gender: string;
-  address: Address;
+  address: Address[];
   createdAt: Date;
 }
 

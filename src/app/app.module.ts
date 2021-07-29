@@ -25,6 +25,7 @@ import {FormsModule} from '@angular/forms';
 import {EmployeesComponent} from './employees/employees.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {far} from '@fortawesome/free-regular-svg-icons';
+import { EmployeeCardComponent } from './employees/employee-card/employee-card.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {far} from '@fortawesome/free-regular-svg-icons';
     ResizeColumnDirective,
     ColumnSelectorsComponent,
     CarsComponent,
-    EmployeesComponent
+    EmployeesComponent,
+    EmployeeCardComponent
   ],
   imports: [
     BrowserModule,
