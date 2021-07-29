@@ -9,7 +9,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatDataTableComponent} from './data-table/mat-data-table/mat-data-table.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatCardModule} from '@angular/material/card';
-import {MatRippleModule} from '@angular/material/core';
+import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatRadioModule} from '@angular/material/radio';
@@ -21,11 +21,15 @@ import {FaIconLibrary, FontAwesomeModule} from '@fortawesome/angular-fontawesome
 import {fas} from '@fortawesome/free-solid-svg-icons';
 import {CarsComponent} from './cars/cars.component';
 import {HttpClientModule} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {EmployeesComponent} from './employees/employees.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {far} from '@fortawesome/free-regular-svg-icons';
 import { EmployeeCardComponent } from './employees/employee-card/employee-card.component';
+import { DateSelectorComponent } from './date-selector/date-selector.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatInputModule} from "@angular/material/input";
 
 @NgModule({
   declarations: [
@@ -36,7 +40,8 @@ import { EmployeeCardComponent } from './employees/employee-card/employee-card.c
     ColumnSelectorsComponent,
     CarsComponent,
     EmployeesComponent,
-    EmployeeCardComponent
+    EmployeeCardComponent,
+    DateSelectorComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +59,12 @@ import { EmployeeCardComponent } from './employees/employee-card/employee-card.c
     MatSortModule,
     MatTableModule,
     DragDropModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

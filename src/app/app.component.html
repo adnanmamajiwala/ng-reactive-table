@@ -12,6 +12,12 @@
         <app-cars></app-cars>
       </ng-template>
     </li>
+    <li ngbNavItem>
+      <a ngbNavLink>Month Year picker</a>
+      <ng-template ngbNavContent>
+        <app-date-selector></app-date-selector>
+      </ng-template>
+    </li>
   </ul>
   <div [ngbNavOutlet]="nav"></div>
 </div>
