@@ -1,10 +1,16 @@
-<div class="chartjs-container">
-  <canvas [chartType]="barChartType"
-          [datasets]="barChartData"
-          [labels]="barChartLabels"
-          [legend]="barChartLegend"
-          [options]="barChartOptions"
-          [plugins]="barChartPlugins"
-          baseChart>
-  </canvas>
+<div class="row">
+  <div class="chartjs-container col-8 offset-2">
+    <canvas [chartType]="barChartType"
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [legend]="barChartLegend"
+            [options]="barChartOptions"
+            baseChart>
+    </canvas>
+  </div>
+</div>
+<div class="row mt-5">
+  <div class="col-6 offset-3">
+    <app-sample-data (data)="update($event)"></app-sample-data>
+  </div>
 </div>

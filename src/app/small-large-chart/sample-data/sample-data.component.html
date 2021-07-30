@@ -1,0 +1,28 @@
+<table class="table table-striped text-center justify-content-center align-middle">
+  <thead>
+  <tr>
+    <th scope="col" class="align-middle">
+      <input #x type="text" class="form-control text-center" id="xAxis" placeholder="x-axis">
+    </th>
+    <th scope="col" class="align-middle">
+      <input #y type="number" class="form-control text-center" id="yAxis" placeholder="y-axis">
+    </th>
+    <th scope="col" class="align-middle">
+      <button class="btn btn-circle btn-circle-sm btn-success m-1" (click)="add(x, y)">
+        <i class="bi bi-plus"></i>
+      </button>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of sampleDataList.slice().reverse()">
+    <td>{{data.name}}</td>
+    <td>{{data.value}}</td>
+    <td>
+      <button class="btn btn-circle btn-circle-sm btn-outline-danger m-1" (click)="delete(data)">
+        <i class="bi bi-trash"></i>
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</table>

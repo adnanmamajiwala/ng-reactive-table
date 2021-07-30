@@ -32,6 +32,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
 import {SmallLargeChartComponent} from './small-large-chart/small-large-chart.component';
 import {ChartsModule} from 'ng2-charts';
+import {SampleDataComponent} from './small-large-chart/sample-data/sample-data.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import {ChartsModule} from 'ng2-charts';
     EmployeesComponent,
     EmployeeCardComponent,
     DateSelectorComponent,
-    SmallLargeChartComponent
+    SmallLargeChartComponent,
+    SampleDataComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,10 +70,10 @@ import {ChartsModule} from 'ng2-charts';
     MatNativeDateModule,
     MatDatepickerModule,
     ReactiveFormsModule,
-    ChartsModule
+    ChartsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
   constructor(library: FaIconLibrary) {

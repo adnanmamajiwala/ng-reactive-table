@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {ChartDataSets, ChartOptions, ChartType} from 'chart.js';
 import {Label} from 'ng2-charts';
+import {getSampleData, SampleDataModel} from './sample-data/sample-data.model';
 
 @Component({
   selector: 'app-small-large-chart',
@@ -12,39 +13,48 @@ export class SmallLargeChartComponent implements OnInit {
   barChartOptions: ChartOptions = {
     responsive: true,
     scales: {
-      xAxes: [{}],
       yAxes: [
         {
           type: 'logarithmic',
           ticks: {
             min: 0.1,
-            max: 25000,
+            autoSkipPadding: 75,
             callback: (value) => Number(value.toString()),
-          },
-          afterBuildTicks: function (chartObj: any, nums: number[]): number[] {
-            console.log(chartObj);
-            chartObj.ticks = [];
-            chartObj.ticks.push(0);
-            chartObj.ticks.push(50);
-            chartObj.ticks.push(25000);
-            return chartObj.ticks;
           },
         },
       ],
     },
   };
-  barChartLabels: Label[] = ['2013', '2014', '2015', '2016', '2017', '2018'];
   barChartType: ChartType = 'bar';
-  barChartLegend = true;
-  barChartPlugins = [];
+  barChartLegend = false;
+  barChartLabels: Label[] = [];
+  barChartData: ChartDataSets[] = [];
+  max = 100
+  min = 50;
 
-  barChartData: ChartDataSets[] = [
-    {data: [200, 300, 50, 3100, 290, 20000], label: 'Company A'},
-  ];
-
-  constructor() {
+  constructor(private changeDetectorRef: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
+    this.update(getSampleData());
   }
+
+  update(data: SampleDataModel[]): void {
+    const labels: Label[] = [];
+    const nums: number[] = [];
+    data.forEach(model => {
+      labels.push(model.name);
+      nums.push(model.value);
+      this.min = Math.min(this.min, model.value);
+      this.max = Math.max(this.max, model.value);
+    });
+    this.barChartLabels = labels;
+    this.barChartData = [{data: nums}];
+    if (!!this.barChartOptions && !!this.barChartOptions.scales && !!this.barChartOptions.scales.yAxes
+      && !!this.barChartOptions.scales.yAxes[1] && !!this.barChartOptions.scales.yAxes[1].ticks) {
+      this.barChartOptions.scales.yAxes[1].ticks.max = this.max;
+    }
+    this.changeDetectorRef.detectChanges();
+  }
+
 }
