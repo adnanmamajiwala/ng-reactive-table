@@ -52,12 +52,4 @@ export class DateSelectorComponent implements OnInit {
     datepicker.close();
   }
 
-  streamOpened() {
-    setTimeout(() => {
-      let button: any = document.querySelector('.mat-calendar-period-button');
-      let arrow: any = document.querySelector('.mat-calendar-arrow');
-      button.style.pointerEvents = 'none';
-      arrow.style.display = 'none';
-    }, 100);
-  }
 }

@@ -1,14 +1,14 @@
 <div class="m-3">
   <mat-form-field appearance="fill">
     <mat-label>Month and Year</mat-label>
-    <input [disabled]='true' [formControl]="date" [matDatepicker]="dp" [max]="maxDate" [min]="minDate" class="text-dark"
+    <input [formControl]="date"
+           [matDatepicker]="datepicker" [max]="maxDate" [min]="minDate" class="text-dark"
            matInput>
-    <mat-datepicker-toggle [for]="dp" matSuffix></mat-datepicker-toggle>
-    <mat-datepicker #dp
-                    (monthSelected)="chosenMonthHandler($event, dp)"
-                    (opened)="streamOpened()"
+    <mat-datepicker-toggle [for]="datepicker" matSuffix></mat-datepicker-toggle>
+    <mat-datepicker #datepicker
+                    (monthSelected)="chosenMonthHandler($event, datepicker)"
                     disabled="false"
-                    panelClass="example-month-picker"
+                    panelClass="month-picker-only"
                     startView="year">
     </mat-datepicker>
   </mat-form-field>
