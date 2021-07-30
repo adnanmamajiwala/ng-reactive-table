@@ -1,6 +1,6 @@
 <app-data-table></app-data-table>
 
 <ng-template #content let-modal>
-  <app-employee-card [employee]="selectedEmployee"
-                     (close)="modal.dismiss()"></app-employee-card>
+  <app-employee-card (close)="modal.dismiss()"
+                     [employee]="selectedEmployee"></app-employee-card>
 </ng-template>

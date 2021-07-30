@@ -31,7 +31,7 @@ export class DataTableService<T> {
     this.selectedColumnsSubject.next(value);
   }
 
-  rowClicked$() : Observable<T> {
+  rowClicked$(): Observable<T> {
     return this.rowClickedSubject.asObservable();
   }
 

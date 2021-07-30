@@ -27,9 +27,9 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import {far} from '@fortawesome/free-regular-svg-icons';
 import {EmployeeCardComponent} from './employees/employee-card/employee-card.component';
 import {DateSelectorComponent} from './date-selector/date-selector.component';
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatDatepickerModule} from "@angular/material/datepicker";
-import {MatInputModule} from "@angular/material/input";
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatInputModule} from '@angular/material/input';
 import {SmallLargeChartComponent} from './small-large-chart/small-large-chart.component';
 import {ChartsModule} from 'ng2-charts';
 

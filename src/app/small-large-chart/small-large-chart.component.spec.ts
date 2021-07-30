@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SmallLargeChartComponent } from './small-large-chart.component';
+import {SmallLargeChartComponent} from './small-large-chart.component';
 
 describe('SmallLargeChartComponent', () => {
   let component: SmallLargeChartComponent;
@@ -8,9 +8,9 @@ describe('SmallLargeChartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SmallLargeChartComponent ]
+      declarations: [SmallLargeChartComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

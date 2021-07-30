@@ -1,13 +1,10 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from "@angular/material/core";
-import {MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter} from "@angular/material-moment-adapter";
-import {FormControl} from "@angular/forms";
-import {MatDatepicker} from "@angular/material/datepicker";
-import * as _moment from 'moment';
-// @ts-ignore
-import {default as _rollupMoment, Moment} from 'moment';
-
-const moment = _rollupMoment || _moment;
+import {Component, OnInit} from '@angular/core';
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+import {MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter} from '@angular/material-moment-adapter';
+import {FormControl} from '@angular/forms';
+import {MatDatepicker} from '@angular/material/datepicker';
+import * as moment from 'moment';
+import {Moment} from 'moment';
 
 export const MY_FORMATS = {
   parse: {
@@ -32,7 +29,7 @@ export const MY_FORMATS = {
 })
 export class DateSelectorComponent implements OnInit {
 
-  date = new FormControl(_moment());
+  date = new FormControl(moment());
   minDate: Date;
   maxDate: Date;
 

@@ -10,6 +10,7 @@
 
   .mat-cell {
     padding: 8px !important;
+
     span {
       display: block;
       overflow: hidden;
@@ -65,6 +66,7 @@
 
   .mat-row:hover {
     background-color: rgba(172, 172, 172, 0.13);
+    cursor: default;
   }
 
   .mat-header-row {

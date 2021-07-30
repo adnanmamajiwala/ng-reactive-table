@@ -1,9 +1,9 @@
 <div class="profile-card text-center" ngbAutofocus>
   <div class="d-flex justify-content-end p-1">
-    <button class="btn-close" (click)="close.emit()"></button>
+    <button (click)="close.emit()" class="btn-close"></button>
   </div>
   <header class="pt-1">
-    <img [src]="employee.avatar" [alt]="employee.name"/>
+    <img [alt]="employee.name" [src]="employee.avatar"/>
     <div class="mt-3">
       <h1 class="hdr">{{employee.name}}</h1>
       <hr>

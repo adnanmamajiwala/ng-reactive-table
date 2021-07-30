@@ -2,7 +2,7 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {CarsService} from './cars.service';
 import {DataTableService} from '../data-table/data-table.service';
 import {CarsDataSource} from './cars-data-source';
-import {Car} from "./car.model";
+import {Car} from './car.model';
 
 @Component({
   selector: 'app-cars',

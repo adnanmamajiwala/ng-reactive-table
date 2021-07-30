@@ -1,22 +1,21 @@
 <ng-template #content let-modal>
   <div class="modal-header" ngbAutofocus>
     <h5 class="modal-title" id="modal-basic-title">Columns settings</h5>
-    <button class="btn-close" (click)="modal.dismiss()">
-    </button>
+    <button (click)="modal.dismiss()" class="btn-close"></button>
   </div>
   <div class="modal-body">
     <div class="row">
       <div *ngIf="!!columnInfoList">
-        <div cdkDropList (cdkDropListDropped)="drop($event)">
+        <div (cdkDropListDropped)="drop($event)" cdkDropList>
           <ng-container *ngFor="let col of columnInfoList; let i=index">
             <div class="row">
-              <div class="col-1 align-self-center text-end pb-1">{{i+1}}.</div>
-              <div class="col-10 shadow item-card bg-body rounded" cdkDrag>
+              <div class="col-1 align-self-center text-end pb-1">{{i + 1}}.</div>
+              <div cdkDrag class="col-10 shadow item-card bg-body rounded">
                 <div class="form-check-inline">
-                  <input class="form-check-input ms-1 me-2 mb-1 align-top" type="checkbox"
+                  <input (click)="onClick($event, i, col)" [checked]=col.selected
                          [value]="col"
-                         [checked]=col.selected
-                         (click)="onClick($event, i, col)">
+                         class="form-check-input ms-1 me-2 mb-1 align-top"
+                         type="checkbox">
                   <label class="form-check-label grab">{{col.displayText}}</label>
                 </div>
                 <i class="bi bi-grip-vertical grab"></i>
@@ -30,9 +29,9 @@
 </ng-template>
 <div class="row">
   <div class="align-top d-flex justify-content-end">
-    <button class="btn btn-link btn-lg" (click)="open(content)">
+    <button (click)="open(content)" class="btn btn-link btn-lg">
       <i class="bi bi-gear-fill"></i>
-<!--      <i class="bi bi-sliders"></i>-->
+      <!--      <i class="bi bi-sliders"></i>-->
     </button>
   </div>
 </div>

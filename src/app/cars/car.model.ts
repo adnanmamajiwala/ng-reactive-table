@@ -9,7 +9,7 @@ export class Car {
   maxSpeed: number;
   gears: number;
   horsePower: number;
-  engine: string
+  engine: string;
   sunroof: boolean;
   electric: boolean;
   gas: boolean;

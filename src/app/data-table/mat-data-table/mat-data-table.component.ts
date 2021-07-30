@@ -1,16 +1,20 @@
 import {AfterViewInit, Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {ColumnInfo, CustomDataSource} from '../data-table.model';
 import {DataTableService} from '../data-table.service';
-import {MatPaginator} from '@angular/material/paginator';
+import {MatPaginator, MatPaginatorIntl} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {merge} from 'rxjs';
 import {tap} from 'rxjs/operators';
+import {CustomPaginatorService} from './custom-paginator.service';
 
 @Component({
   selector: 'app-mat-data-table',
   templateUrl: './mat-data-table.component.html',
   styleUrls: ['./mat-data-table.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  providers: [
+    {provide: MatPaginatorIntl, useClass: CustomPaginatorService}
+  ]
 })
 export class MatDataTableComponent implements OnInit, AfterViewInit {
 
@@ -26,7 +30,7 @@ export class MatDataTableComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.dataTableService.customDataSource$().subscribe(value => {
+    this.dataTableService.customDataSource$().subscribe((value: CustomDataSource<any>) => {
       if (!!value) {
         this.dataSource = value;
         this.dataSource.load('', 'asc', 1, 5);
@@ -34,12 +38,11 @@ export class MatDataTableComponent implements OnInit, AfterViewInit {
       }
     });
 
-    this.dataTableService.selectedColumns$()
-      .subscribe((value: ColumnInfo[]) => {
-        if (!!value) {
-          this.propertyNames = value.map<string>(val => val.name);
-        }
-      });
+    this.dataTableService.selectedColumns$().subscribe((value: ColumnInfo[]) => {
+      if (!!value) {
+        this.propertyNames = value.map<string>(val => val.name);
+      }
+    });
   }
 
 

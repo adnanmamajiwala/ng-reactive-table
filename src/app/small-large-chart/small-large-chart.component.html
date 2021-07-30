@@ -1,10 +1,10 @@
 <div class="chartjs-container">
-  <canvas baseChart
+  <canvas [chartType]="barChartType"
           [datasets]="barChartData"
           [labels]="barChartLabels"
+          [legend]="barChartLegend"
           [options]="barChartOptions"
           [plugins]="barChartPlugins"
-          [legend]="barChartLegend"
-          [chartType]="barChartType">
+          baseChart>
   </canvas>
 </div>

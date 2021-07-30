@@ -17,21 +17,19 @@ export class SmallLargeChartComponent implements OnInit {
         {
           type: 'logarithmic',
           ticks: {
-            autoSkip: true,
-            min: 0.1, //minimum tick
-            max: 13000, //maximum tick
+            min: 0.1,
+            max: 25000,
             callback: (value) => Number(value.toString()),
           },
-          afterBuildTicks: (chartObj) => { //Build ticks labelling as per your need
+          afterBuildTicks: function (chartObj: any, nums: number[]): number[] {
+            console.log(chartObj);
             chartObj.ticks = [];
             chartObj.ticks.push(0);
-            chartObj.ticks.push(100);
-            chartObj.ticks.push(1000);
-            chartObj.ticks.push(15000);
+            chartObj.ticks.push(50);
+            chartObj.ticks.push(25000);
             return chartObj.ticks;
           },
         },
-
       ],
     },
   };
@@ -41,7 +39,7 @@ export class SmallLargeChartComponent implements OnInit {
   barChartPlugins = [];
 
   barChartData: ChartDataSets[] = [
-    {data: [200, 300, 50, 310, 290, 12000], label: 'Company A'},
+    {data: [200, 300, 50, 3100, 290, 20000], label: 'Company A'},
   ];
 
   constructor() {
@@ -49,5 +47,4 @@ export class SmallLargeChartComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }
