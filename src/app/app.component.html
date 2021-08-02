@@ -1,12 +1,6 @@
 <div class="container mt-3">
   <ul #nav="ngbNav" class="nav-pills mb-5" ngbNav>
     <li ngbNavItem>
-      <a ngbNavLink>Chart</a>
-      <ng-template ngbNavContent>
-        <app-small-large-chart></app-small-large-chart>
-      </ng-template>
-    </li>
-    <li ngbNavItem>
       <a ngbNavLink>Table 1</a>
       <ng-template ngbNavContent>
         <app-employees></app-employees>
@@ -24,7 +18,12 @@
         <app-date-selector></app-date-selector>
       </ng-template>
     </li>
-
+    <li ngbNavItem>
+      <a ngbNavLink>Chart</a>
+      <ng-template ngbNavContent>
+        <app-small-large-chart></app-small-large-chart>
+      </ng-template>
+    </li>
   </ul>
   <div [ngbNavOutlet]="nav"></div>
 </div>

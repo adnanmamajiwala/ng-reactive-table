@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {getSampleData, CompanyFinancialInfo} from './sample-data.model';
+import {getSampleData, ProductInfo} from './sample-data.model';
 
 @Component({
   selector: 'app-sample-data',
@@ -8,28 +8,28 @@ import {getSampleData, CompanyFinancialInfo} from './sample-data.model';
 })
 export class SampleDataComponent implements OnInit {
 
-  @Output() data = new EventEmitter<CompanyFinancialInfo[]>();
+  @Output() data = new EventEmitter<ProductInfo[]>();
 
-  financialInfos: CompanyFinancialInfo[] = [];
+  products: ProductInfo[] = [];
 
   constructor() {
   }
 
   ngOnInit(): void {
-    this.financialInfos = getSampleData();
-    this.data.emit(this.financialInfos);
+    this.products = getSampleData();
+    this.data.emit(this.products);
   }
 
   add(nameEL: HTMLInputElement, valEl: HTMLInputElement) {
-    this.financialInfos.push({companyName: nameEL.value, turnOverAmount: Number(valEl.value)});
-    this.data.emit(this.financialInfos);
+    this.products.push({name: nameEL.value, rating: Number(valEl.value)});
+    this.data.emit(this.products);
     nameEL.value = '';
     valEl.value = '';
   }
 
-  delete(dataModel: CompanyFinancialInfo) {
-    const index = this.financialInfos.findIndex((v) => v === dataModel);
-    this.financialInfos.splice(index, 1);
-    this.data.emit(this.financialInfos);
+  delete(productInfo: ProductInfo) {
+    const index = this.products.findIndex((v) => v === productInfo);
+    this.products.splice(index, 1);
+    this.data.emit(this.products);
   }
 }

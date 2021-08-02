@@ -1,7 +1,7 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {ChartDataSets, ChartOptions} from 'chart.js';
 import {Label} from 'ng2-charts';
-import {CompanyFinancialInfo} from './sample-data/sample-data.model';
+import {ProductInfo} from './sample-data/sample-data.model';
 import {draw} from 'patternomaly';
 
 declare const palette: any;
@@ -23,14 +23,14 @@ export class SmallLargeChartComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  update(financialInfos: CompanyFinancialInfo[]): void {
+  update(products: ProductInfo[]): void {
     const labels: Label[] = [];
     const nums: number[] = [];
     let max: number = 0;
-    financialInfos.forEach((info, index) => {
-      labels.push([info.companyName]);
-      nums.push(info.turnOverAmount);
-      max = Math.max(max, info.turnOverAmount);
+    products.forEach((product, index) => {
+      labels.push([product.name]);
+      nums.push(product.rating);
+      max = Math.max(max, product.rating);
     });
 
     this.barChartLabels = labels;
@@ -64,7 +64,7 @@ export class SmallLargeChartComponent implements OnInit {
       responsive: true,
       title: {
         display: true,
-        text: 'Company turnover for 2021'
+        text: 'Product global rating for 2021',
       },
       scales: {
         yAxes: [

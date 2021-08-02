@@ -1,15 +1,15 @@
-export class CompanyFinancialInfo {
-  companyName: string;
-  turnOverAmount: number;
+export class ProductInfo {
+  name: string;
+  rating: number;
 }
 
-export function getSampleData(): CompanyFinancialInfo[] {
+export function getSampleData(): ProductInfo[] {
   return [
-    {turnOverAmount: 200, companyName: 'A'},
-    {turnOverAmount: 300, companyName: 'B'},
-    {turnOverAmount: 50, companyName: 'C'},
-    {turnOverAmount: 3100, companyName: 'D'},
-    {turnOverAmount: 290, companyName: 'E'},
-    {turnOverAmount: 20000, companyName: 'F'},
+    {rating: 200, name: 'A'},
+    {rating: 300, name: 'B'},
+    {rating: 50, name: 'C'},
+    {rating: 3100, name: 'D'},
+    {rating: 290, name: 'E'},
+    {rating: 20000, name: 'F'},
   ];
 }
