@@ -31,17 +31,17 @@ export class SmallLargeChartComponent implements OnInit {
     });
     this.barChartLabels = labels;
     this.barChartData = [{data: nums}];
-    this.setBarChartOptions(max);
+    this.barChartOptions = this.buildBarChartOptions(max);
     this.changeRef.detectChanges();
   }
 
-  private setBarChartOptions(num: number): void {
+  private buildBarChartOptions(num: number): ChartOptions {
     let max = 1;
     const ticks: number[] = [0, 1];
     while (max < num) {
       ticks.push(max *= 10);
     }
-    this.barChartOptions = {
+    return {
       responsive: true,
       scales: {
         yAxes: [
