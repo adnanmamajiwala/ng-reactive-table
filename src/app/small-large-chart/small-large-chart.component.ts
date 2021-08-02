@@ -1,7 +1,7 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {ChartDataSets, ChartOptions, ChartType} from 'chart.js';
-import {Label} from 'ng2-charts';
-import {getSampleData, SampleDataModel} from './sample-data/sample-data.model';
+import {ChartDataSets, ChartOptions} from 'chart.js';
+import {Label, MultiLineLabel} from 'ng2-charts';
+import {SampleDataModel} from './sample-data/sample-data.model';
 
 @Component({
   selector: 'app-small-large-chart',
@@ -10,51 +10,52 @@ import {getSampleData, SampleDataModel} from './sample-data/sample-data.model';
 })
 export class SmallLargeChartComponent implements OnInit {
 
-  barChartOptions: ChartOptions = {
-    responsive: true,
-    scales: {
-      yAxes: [
-        {
-          type: 'logarithmic',
-          ticks: {
-            min: 0.1,
-            autoSkipPadding: 75,
-            callback: (value) => Number(value.toString()),
-          },
-        },
-      ],
-    },
-  };
-  barChartType: ChartType = 'bar';
-  barChartLegend = false;
+  barChartOptions: ChartOptions = {};
   barChartLabels: Label[] = [];
   barChartData: ChartDataSets[] = [];
-  max = 100
-  min = 50;
 
-  constructor(private changeDetectorRef: ChangeDetectorRef) {
+  constructor(private changeRef: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
-    this.update(getSampleData());
   }
 
   update(data: SampleDataModel[]): void {
     const labels: Label[] = [];
     const nums: number[] = [];
-    data.forEach(model => {
-      labels.push(model.name);
+    let max: number = 0;
+    data.forEach((model, index) => {
+      labels.push([model.name]);
       nums.push(model.value);
-      this.min = Math.min(this.min, model.value);
-      this.max = Math.max(this.max, model.value);
+      max = Math.max(max, model.value);
     });
     this.barChartLabels = labels;
     this.barChartData = [{data: nums}];
-    if (!!this.barChartOptions && !!this.barChartOptions.scales && !!this.barChartOptions.scales.yAxes
-      && !!this.barChartOptions.scales.yAxes[1] && !!this.barChartOptions.scales.yAxes[1].ticks) {
-      this.barChartOptions.scales.yAxes[1].ticks.max = this.max;
-    }
-    this.changeDetectorRef.detectChanges();
+    this.setBarChartOptions(max);
+    this.changeRef.detectChanges();
   }
 
+  private setBarChartOptions(num: number): void {
+    let max = 1;
+    const ticks: number[] = [0, 1];
+    while (max < num) {
+      ticks.push(max *= 10);
+    }
+    this.barChartOptions = {
+      responsive: true,
+      scales: {
+        yAxes: [
+          {
+            type: 'logarithmic',
+            ticks: {
+              min: 0.1,
+              max: max,
+              callback: (value) => Number(value.toString()),
+            },
+            afterBuildTicks: () => ticks
+          },
+        ],
+      },
+    };
+  }
 }

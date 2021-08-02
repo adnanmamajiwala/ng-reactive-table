@@ -1,9 +1,9 @@
 <div class="row">
   <div class="chartjs-container col-8 offset-2">
-    <canvas [chartType]="barChartType"
+    <canvas chartType="bar"
+            [legend]="false"
             [datasets]="barChartData"
             [labels]="barChartLabels"
-            [legend]="barChartLegend"
             [options]="barChartOptions"
             baseChart>
     </canvas>
