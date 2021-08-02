@@ -1,7 +1,10 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {ChartDataSets, ChartOptions} from 'chart.js';
-import {Label, MultiLineLabel} from 'ng2-charts';
+import {Label} from 'ng2-charts';
 import {SampleDataModel} from './sample-data/sample-data.model';
+import {draw} from 'patternomaly';
+
+declare const palette: any;
 
 @Component({
   selector: 'app-small-large-chart',
@@ -29,10 +32,25 @@ export class SmallLargeChartComponent implements OnInit {
       nums.push(model.value);
       max = Math.max(max, model.value);
     });
+
     this.barChartLabels = labels;
-    this.barChartData = [{data: nums}];
+    this.barChartData = this.buildChartData(nums);
     this.barChartOptions = this.buildBarChartOptions(max);
     this.changeRef.detectChanges();
+  }
+
+  private buildChartData(nums: number[]): ChartDataSets[] {
+    let colours = palette('tol-rainbow', nums.length, 0);
+    return [
+      {
+        data: nums,
+        backgroundColor: () => colours.map((hex: string) => '#' + hex + '66'),
+        borderColor: () => colours.map((hex: string) => '#' + hex + 'b2'),
+        hoverBackgroundColor: draw('diagonal-right-left', '#D5D5D5B2'),
+        hoverBorderColor: '#909090',
+        borderWidth: 1,
+      },
+    ];
   }
 
   private buildBarChartOptions(num: number): ChartOptions {
@@ -52,7 +70,7 @@ export class SmallLargeChartComponent implements OnInit {
               max: max,
               callback: (value) => Number(value.toString()),
             },
-            afterBuildTicks: () => ticks
+            afterBuildTicks: () => ticks,
           },
         ],
       },
