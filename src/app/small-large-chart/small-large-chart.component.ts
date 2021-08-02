@@ -1,7 +1,7 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {ChartDataSets, ChartOptions} from 'chart.js';
 import {Label} from 'ng2-charts';
-import {SampleDataModel} from './sample-data/sample-data.model';
+import {CompanyFinancialInfo} from './sample-data/sample-data.model';
 import {draw} from 'patternomaly';
 
 declare const palette: any;
@@ -23,14 +23,14 @@ export class SmallLargeChartComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  update(data: SampleDataModel[]): void {
+  update(financialInfos: CompanyFinancialInfo[]): void {
     const labels: Label[] = [];
     const nums: number[] = [];
     let max: number = 0;
-    data.forEach((model, index) => {
-      labels.push([model.name]);
-      nums.push(model.value);
-      max = Math.max(max, model.value);
+    financialInfos.forEach((info, index) => {
+      labels.push([info.companyName]);
+      nums.push(info.turnOverAmount);
+      max = Math.max(max, info.turnOverAmount);
     });
 
     this.barChartLabels = labels;
@@ -40,7 +40,8 @@ export class SmallLargeChartComponent implements OnInit {
   }
 
   private buildChartData(nums: number[]): ChartDataSets[] {
-    let colours = palette('tol-rainbow', nums.length, 0);
+    const colours = palette('tol-rainbow', nums.length, 0);
+    // const colours = palette('qualitative', nums.length, 0);
     return [
       {
         data: nums,
@@ -61,6 +62,10 @@ export class SmallLargeChartComponent implements OnInit {
     }
     return {
       responsive: true,
+      title: {
+        display: true,
+        text: 'Company turnover for 2021'
+      },
       scales: {
         yAxes: [
           {

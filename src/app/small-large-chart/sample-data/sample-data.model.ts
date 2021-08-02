@@ -1,15 +1,15 @@
-export class SampleDataModel {
-  name: string;
-  value: number;
+export class CompanyFinancialInfo {
+  companyName: string;
+  turnOverAmount: number;
 }
 
-export function getSampleData(): SampleDataModel[] {
+export function getSampleData(): CompanyFinancialInfo[] {
   return [
-    {value: 200, name: 'A'},
-    {value: 300, name: 'B'},
-    {value: 50, name: 'C'},
-    {value: 3100, name: 'D'},
-    {value: 290, name: 'E'},
-    {value: 20000, name: 'F'},
+    {turnOverAmount: 200, companyName: 'A'},
+    {turnOverAmount: 300, companyName: 'B'},
+    {turnOverAmount: 50, companyName: 'C'},
+    {turnOverAmount: 3100, companyName: 'D'},
+    {turnOverAmount: 290, companyName: 'E'},
+    {turnOverAmount: 20000, companyName: 'F'},
   ];
 }
