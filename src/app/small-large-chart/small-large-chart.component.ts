@@ -40,8 +40,7 @@ export class SmallLargeChartComponent implements OnInit {
   }
 
   private buildChartData(nums: number[]): ChartDataSets[] {
-    const colours = palette('tol-rainbow', nums.length, 0);
-    // const colours = palette('qualitative', nums.length, 0);
+    const colours = palette(['mpn65', 'tol-rainbow'], nums.length);
     return [
       {
         data: nums,

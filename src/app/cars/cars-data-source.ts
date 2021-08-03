@@ -17,7 +17,10 @@ export class CarsDataSource extends CustomDataSource<Car> {
         catchError(() => of([])),
         finalize(() => this.loadingSubject.next(false))
       )
-      .subscribe(val => this.dataSubject.next(val));
+      .subscribe(val => {
+        this.dataSubject.next(val);
+        this.totalElements = 50;
+      });
   }
 
   setupColumnInfo(): ColumnInfo[] {
@@ -40,6 +43,10 @@ export class CarsDataSource extends CustomDataSource<Car> {
       {name: 'hybrid', displayText: 'Hybrid', selected: false},
       {name: 'limitedEdition', displayText: 'Limited Edition', selected: false},
     ];
+  }
+
+  setupMaxColumns(): number {
+    return 10;
   }
 
 }

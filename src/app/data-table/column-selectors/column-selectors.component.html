@@ -12,7 +12,7 @@
               <div class="col-1 align-self-center text-end pb-1">{{i + 1}}.</div>
               <div cdkDrag class="col-10 shadow item-card bg-body rounded">
                 <div class="form-check-inline">
-                  <input (click)="onClick($event, i, col)" [checked]=col.selected
+                  <input #cb (click)="onClick($event, i, col, cb)" [checked]=col.selected
                          [value]="col"
                          class="form-check-input ms-1 me-2 mb-1 align-top"
                          type="checkbox">
@@ -35,5 +35,3 @@
     </button>
   </div>
 </div>
-
-

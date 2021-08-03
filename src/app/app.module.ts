@@ -16,7 +16,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatSortModule} from '@angular/material/sort';
 import {ResizeColumnDirective} from './data-table/mat-data-table/resize-column.directive';
 import {ColumnSelectorsComponent} from './data-table/column-selectors/column-selectors.component';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModule, NgbToastModule} from '@ng-bootstrap/ng-bootstrap';
 import {FaIconLibrary, FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {fas} from '@fortawesome/free-solid-svg-icons';
 import {CarsComponent} from './cars/cars.component';
@@ -33,6 +33,7 @@ import {MatInputModule} from '@angular/material/input';
 import {SmallLargeChartComponent} from './small-large-chart/small-large-chart.component';
 import {ChartsModule} from 'ng2-charts';
 import {SampleDataComponent} from './small-large-chart/sample-data/sample-data.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import {SampleDataComponent} from './small-large-chart/sample-data/sample-data.c
     MatInputModule,
     MatNativeDateModule,
     MatDatepickerModule,
+    MatSnackBarModule,
     ReactiveFormsModule,
     ChartsModule,
   ],

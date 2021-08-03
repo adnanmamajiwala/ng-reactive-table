@@ -17,7 +17,10 @@ export class EmployeesDataSource extends CustomDataSource<Employee> {
         catchError(() => of([])),
         finalize(() => this.loadingSubject.next(false))
       )
-      .subscribe(val => this.dataSubject.next(val));
+      .subscribe(val => {
+        this.dataSubject.next(val);
+        this.totalElements = 50;
+      });
   }
 
   setupColumnInfo(): ColumnInfo[] {
@@ -25,9 +28,13 @@ export class EmployeesDataSource extends CustomDataSource<Employee> {
       {name: 'id', displayText: 'Id', selected: true},
       {name: 'name', displayText: 'Name', selected: true},
       {name: 'avatar', displayText: 'Image Url', selected: true},
-      {name: 'gender', displayText: 'Gender', selected: true},
+      {name: 'gender', displayText: 'Gender', selected: false},
       {name: 'createdAt', displayText: 'Join Date', selected: true}
     ];
+  }
+
+  setupMaxColumns(): number {
+    return 4;
   }
 
 }
