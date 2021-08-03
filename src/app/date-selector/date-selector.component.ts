@@ -29,7 +29,7 @@ export const MY_FORMATS = {
 })
 export class DateSelectorComponent implements OnInit {
 
-  date = new FormControl(moment());
+  date = new FormControl(moment().subtract('1', 'months'));
   minDate: Date;
   maxDate: Date;
 
@@ -37,11 +37,8 @@ export class DateSelectorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Set the minimum to January 1st 20 years in the past and December 31st a year in the future.
-    const currentYear = new Date().getFullYear();
-    const currentMonth = new Date().getMonth();
-    this.minDate = new Date(currentYear - 2, currentMonth, 1);
-    this.maxDate = new Date(currentYear, currentMonth, 1);
+    this.minDate = moment().subtract('2', 'years').subtract('1', 'months').toDate();
+    this.maxDate = moment().subtract('1', 'months').toDate();
   }
 
   chosenMonthHandler(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>) {
