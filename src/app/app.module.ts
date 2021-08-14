@@ -14,9 +14,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatSortModule} from '@angular/material/sort';
-import {ResizeColumnDirective} from './data-table/mat-data-table/resize-column.directive';
+import {ResizeColumnDirective} from './shared/resize-column.directive';
 import {ColumnSelectorsComponent} from './data-table/column-selectors/column-selectors.component';
-import {NgbModule, NgbToastModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {FaIconLibrary, FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {fas} from '@fortawesome/free-solid-svg-icons';
 import {CarsComponent} from './cars/cars.component';
@@ -38,6 +38,9 @@ import {GroupByMatTableComponent} from './group-by-mat-table/group-by-mat-table.
 import {MatListModule} from '@angular/material/list';
 import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
+import {CdkTableModule} from '@angular/cdk/table';
+import {SamplesComponent} from './samples/samples.component';
+import {SamplesTableComponent} from './samples/samples-table/samples-table.component';
 
 @NgModule({
   declarations: [

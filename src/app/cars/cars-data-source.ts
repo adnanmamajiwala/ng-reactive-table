@@ -1,8 +1,9 @@
-import {ColumnInfo, CustomDataSource} from '../data-table/data-table.model';
+import {CustomDataSource} from '../data-table/data-table.model';
 import {Car} from './car.model';
 import {CarsService} from './cars.service';
 import {of} from 'rxjs';
 import {catchError, finalize} from 'rxjs/operators';
+import {ColumnInfo} from '../shared/column-info.model';
 
 export class CarsDataSource extends CustomDataSource<Car> {
 

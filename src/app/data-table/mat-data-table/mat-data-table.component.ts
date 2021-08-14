@@ -1,11 +1,12 @@
 import {AfterViewInit, Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
-import {ColumnInfo, CustomDataSource} from '../data-table.model';
+import {CustomDataSource} from '../data-table.model';
 import {DataTableService} from '../data-table.service';
 import {MatPaginator, MatPaginatorIntl} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {merge} from 'rxjs';
 import {tap} from 'rxjs/operators';
-import {CustomPaginatorService} from './custom-paginator.service';
+import {CustomPaginatorService} from '../../shared/custom-paginator.service';
+import {ColumnInfo} from '../../shared/column-info.model';
 
 @Component({
   selector: 'app-mat-data-table',
