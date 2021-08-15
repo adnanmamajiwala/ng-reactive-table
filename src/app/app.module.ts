@@ -34,7 +34,6 @@ import {SmallLargeChartComponent} from './small-large-chart/small-large-chart.co
 import {ChartsModule} from 'ng2-charts';
 import {SampleDataComponent} from './small-large-chart/sample-data/sample-data.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {GroupByMatTableComponent} from './group-by-mat-table/group-by-mat-table.component';
 import {MatListModule} from '@angular/material/list';
 import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
@@ -56,7 +55,6 @@ import {SamplesColumnSelectorComponent} from './samples/samples-table/samples-co
     DateSelectorComponent,
     SmallLargeChartComponent,
     SampleDataComponent,
-    GroupByMatTableComponent,
     SamplesComponent,
     SamplesTableComponent,
     SamplesColumnSelectorComponent,
