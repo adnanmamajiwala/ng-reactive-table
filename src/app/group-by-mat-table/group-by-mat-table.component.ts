@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {People, people} from './data';
 
 @Component({
@@ -8,76 +8,73 @@ import {People, people} from './data';
 })
 export class GroupByMatTableComponent implements OnInit {
 
-  displayedColumns: string[];
-  dataSource = [];
-  collapsedGroups: Group[] = [];
-  initialData: any [];
+  displayedColumns = ['surname', 'forename', 'gender', 'salary', 'department'];
+  dataSource: People[] = [];
+  collapsedGroups = new Set<string>();
+  initialData: People [];
+  map = new Map<string, People[]>();
 
-  constructor() {
+  constructor(private changeDetRef: ChangeDetectorRef) {
   }
 
   ngOnInit() {
-    this.initialData = people;
-    this.displayedColumns = Object.keys(this.initialData[0]);
-    this.displayedColumns.splice(3, 1);
-    this.dataSource = this.groupBy(this.initialData);
+    this.initialData = people.sort((a, b) => {
+      const comp = a.ukCity.localeCompare(b.ukCity);
+      return comp === 0 ? a.surname.localeCompare(b.surname) : comp;
+    });
+    this.dataSource = this.groupBy();
   }
 
-  /**
-   * Groups the @param data by distinct values of a @param column
-   * This adds group lines to the dataSource
-   * @param data
-   */
-  groupBy(data: any[]) {
-    let groups = data.reduce(this.customReducer(), {});
-    let groupArray = Object.keys(groups).map(key => groups[key]);
-    let flatList = groupArray.reduce((a, c) => a.concat(c), []);
-
-    return flatList.filter((rawLine: People | Group) => (rawLine as Group).isGroup
-      || this.collapsedGroups.every((group) => (rawLine as People).ukCity != group.groupName));
-  }
-
-  private customReducer() {
-    return (accumulator: { [x: string]: (People | Group)[] }, currentValue: People) => {
-      let groupName = currentValue.ukCity;
-      if (!accumulator[groupName]) {
-        accumulator[groupName] = [{
-          groupName: groupName,
-          isGroup: true,
-          reduced: this.collapsedGroups.some((group) => group.groupName == groupName),
-        }];
-      }
-      accumulator[groupName].push(currentValue);
-      return accumulator;
-    };
-  }
-
-  /**
-   * Used in the view to collapse a group
-   * Effectively removing it from the displayed datasource
-   */
-  reduceGroup(row: Group) {
-    row.reduced = !row.reduced;
-    if (row.reduced) {
-      this.collapsedGroups.push(row);
+  reduceGroup(row: People) {
+    if (this.collapsedGroups.has(row.groupName)) {
+      this.collapsedGroups.delete(row.groupName);
     } else {
-      this.collapsedGroups = this.collapsedGroups.filter((group) => group.groupName != row.groupName);
+      this.collapsedGroups.add(row.groupName);
     }
-    this.dataSource = this.groupBy(this.initialData);
+    this.toggle(row.groupName);
+    this.dataSource = this.groupBy();
   }
 
-  /**
-   * Since groups are on the same level as the data,
-   * this function is used by @input(matRowDefWhen)
-   */
-  isGroup(index: any, item: Group): boolean {
+  isGroup(index: any, item: People): boolean {
     return item.isGroup;
   }
 
-}
+  isVisible(index: any, item: People): boolean {
+    return !item.reduced && !item.isGroup;
+  }
 
-export class Group {
-  reduced: boolean;
-  isGroup: boolean;
-  groupName: string;
+  groupBy(): People[] {
+    const set = new Set<string>();
+    const groups: People[] = [];
+
+    this.initialData.forEach(value => {
+      const isCollapsed = this.collapsedGroups.has(value.ukCity);
+
+      if (!set.has(value.ukCity)) {
+        set.add(value.ukCity);
+        const group = new People();
+        group.groupName = value.ukCity;
+        group.isGroup = true;
+        group.reduced = isCollapsed;
+        groups.push(group);
+        this.map.set(value.ukCity, [group]);
+      }
+
+      value.reduced = isCollapsed;
+      value.groupName = value.ukCity;
+      value.isGroup = false;
+      this.map.get(value.ukCity)?.push(value);
+      if (!isCollapsed) {
+        groups.push(value);
+      }
+    });
+    return groups;
+  }
+
+  private toggle(groupName: string) {
+    const group: People[] = this.map.get(groupName) || [];
+    for (let i = 1; i < group.length; i++) {
+      group[i].reduced = !group[i].reduced;
+    }
+  }
 }

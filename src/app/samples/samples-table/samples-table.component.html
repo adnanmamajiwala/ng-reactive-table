@@ -1,0 +1,34 @@
+<app-samples-column-selector [samplesTableDatasource]="dataSource"></app-samples-column-selector>
+<div *ngIf="!!dataSource" class="mat-elevation-z8">
+  <div class="table-responsive">
+    <div *ngIf="dataSource.loading$ | async" class="spinner-container">
+      <mat-spinner></mat-spinner>
+    </div>
+    <table cdk-table [dataSource]="dataSource" class="table table-hover"
+           matSort matSortDirection="asc" matSortDisableClear>
+
+      <ng-container *ngFor="let col of columnInfoList; let i=index" [cdkColumnDef]="col.name">
+        <th cdk-header-cell *cdkHeaderCellDef mat-sort-header>{{ col.displayText }}</th>
+        <td cdk-cell *cdkCellDef="let row">{{ row[col.name] }}</td>
+      </ng-container>
+
+      <tr cdk-header-row *cdkHeaderRowDef="propertyNames; sticky: true"></tr>
+      <tr cdk-row *cdkRowDef="let row; columns: propertyNames;"></tr>
+
+      <ng-container cdkColumnDef="groupHeader">
+        <td colspan="999" cdk-cell *cdkCellDef="let group">
+          <button class="btn btn-link p-0 pe-3 text-secondary">
+            <i class="bi" [ngClass]="group['reduced'] ? 'bi-plus-square' : 'bi-dash-square'"></i>
+          </button>
+          <strong>{{group['groupName']}}</strong>
+        </td>
+      </ng-container>
+
+      <tr cdk-row class="" *cdkRowDef="let row; columns: ['groupHeader']; when: organizer.isGroup"
+          (click)="organizer.reduceGroup(row)"></tr>
+
+    </table>
+  </div>
+  <mat-paginator [length]="dataSource.totalElements" [pageSizeOptions]="[10, 20, 50, 100, 200, 500, 1000]"
+                 [pageSize]="50" showFirstLastButtons></mat-paginator>
+</div>

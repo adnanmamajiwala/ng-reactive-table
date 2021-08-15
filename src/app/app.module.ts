@@ -41,6 +41,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {CdkTableModule} from '@angular/cdk/table';
 import {SamplesComponent} from './samples/samples.component';
 import {SamplesTableComponent} from './samples/samples-table/samples-table.component';
+import {SamplesColumnSelectorComponent} from './samples/samples-table/samples-column-selector/samples-column-selector.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,9 @@ import {SamplesTableComponent} from './samples/samples-table/samples-table.compo
     SmallLargeChartComponent,
     SampleDataComponent,
     GroupByMatTableComponent,
+    SamplesComponent,
+    SamplesTableComponent,
+    SamplesColumnSelectorComponent,
   ],
   imports: [
     BrowserModule,
@@ -84,6 +88,7 @@ import {SamplesTableComponent} from './samples/samples-table/samples-table.compo
     MatListModule,
     MatSelectModule,
     MatIconModule,
+    CdkTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

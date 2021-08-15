@@ -3,7 +3,7 @@ import {Employee} from './employee.model';
 import {catchError, finalize} from 'rxjs/operators';
 import {of} from 'rxjs';
 import {EmployeesService} from './employees.service';
-import {ColumnInfo} from '../shared/column-info.model';
+import {ColumnInfo} from '../shared/shared.model';
 
 export class EmployeesDataSource extends CustomDataSource<Employee> {
 

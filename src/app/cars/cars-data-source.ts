@@ -3,7 +3,7 @@ import {Car} from './car.model';
 import {CarsService} from './cars.service';
 import {of} from 'rxjs';
 import {catchError, finalize} from 'rxjs/operators';
-import {ColumnInfo} from '../shared/column-info.model';
+import {ColumnInfo} from '../shared/shared.model';
 
 export class CarsDataSource extends CustomDataSource<Car> {
 

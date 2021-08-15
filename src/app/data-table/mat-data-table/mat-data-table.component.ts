@@ -6,7 +6,7 @@ import {MatSort} from '@angular/material/sort';
 import {merge} from 'rxjs';
 import {tap} from 'rxjs/operators';
 import {CustomPaginatorService} from '../../shared/custom-paginator.service';
-import {ColumnInfo} from '../../shared/column-info.model';
+import {ColumnInfo} from '../../shared/shared.model';
 
 @Component({
   selector: 'app-mat-data-table',

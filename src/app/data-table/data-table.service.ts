@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {CustomDataSource} from './data-table.model';
-import {ColumnInfo} from '../shared/column-info.model';
+import {ColumnInfo} from '../shared/shared.model';
 
 @Injectable({
   providedIn: 'root'

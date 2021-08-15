@@ -2,7 +2,7 @@ import {ChangeDetectorRef, Component, OnInit, TemplateRef} from '@angular/core';
 import {DataTableService} from '../data-table.service';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {ColumnInfo} from '../../shared/column-info.model';
+import {ColumnInfo} from '../../shared/shared.model';
 
 @Component({
   selector: 'app-column-selectors',

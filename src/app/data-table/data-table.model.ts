@@ -1,6 +1,6 @@
 import {CollectionViewer, DataSource} from '@angular/cdk/collections';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {ColumnInfo} from '../shared/column-info.model';
+import {ColumnInfo} from '../shared/shared.model';
 
 export abstract class CustomDataSource<T> implements DataSource<T> {
 
