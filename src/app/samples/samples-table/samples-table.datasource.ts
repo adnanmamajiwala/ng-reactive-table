@@ -4,15 +4,15 @@ import {SamplesService} from '../samples.service';
 import {catchError, finalize} from 'rxjs/operators';
 import {of} from 'rxjs';
 import {ColumnInfo, Page, SortDirection} from '../../shared/shared.model';
-import {SamplesTableOrganizer} from './samples-table.organizer';
+import {SamplesTableAggregator} from './samples-table.aggregator';
 
 export class SamplesTableDatasource extends AbstractDataSource<Sample> {
 
-  private readonly _organizer: SamplesTableOrganizer;
+  private readonly _aggregator: SamplesTableAggregator;
 
   constructor(private samplesService: SamplesService) {
     super();
-    this._organizer = new SamplesTableOrganizer(this.dataSubject);
+    this._aggregator = new SamplesTableAggregator(this.dataSubject);
   }
 
   load(sortBy: string, sortDirection: SortDirection, pageIndex: number, pageSize: number): void {
@@ -23,7 +23,7 @@ export class SamplesTableDatasource extends AbstractDataSource<Sample> {
         finalize(() => this.loadingSubject.next(false))
       )
       .subscribe((val: Page<Sample>) => {
-        this._organizer.groupBy(val.content);
+        this._aggregator.groupBy(val.content);
         this.totalElements = val.totalElements;
       });
   }
@@ -32,8 +32,8 @@ export class SamplesTableDatasource extends AbstractDataSource<Sample> {
     return SamplesColumnInfo;
   }
 
-  organizer(): SamplesTableOrganizer {
-    return this._organizer;
+  aggregator(): SamplesTableAggregator {
+    return this._aggregator;
   }
 
 }

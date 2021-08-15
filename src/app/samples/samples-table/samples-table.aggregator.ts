@@ -1,9 +1,9 @@
-import {Organizer} from '../../shared/abstract-data-source';
+import {Aggregator} from '../../shared/abstract-data-source';
 import {Sample} from '../samples.model';
 import {Group} from '../../shared/shared.model';
 import {BehaviorSubject} from 'rxjs';
 
-export class SamplesTableOrganizer extends Organizer<Sample> {
+export class SamplesTableAggregator extends Aggregator<Sample> {
 
   private collapsedGroups = new Set<string>();
   private map = new Map<string, Sample[]>();
@@ -16,7 +16,7 @@ export class SamplesTableOrganizer extends Organizer<Sample> {
     return item.isGroup;
   }
 
-  reduceGroup(row: Group): void {
+  collapseGroup(row: Group): void {
     if (this.collapsedGroups.has(row.groupName)) {
       this.collapsedGroups.delete(row.groupName);
     } else {

@@ -38,14 +38,14 @@ export abstract class AbstractDataSource<T> implements DataSource<T> {
   }
 }
 
-export abstract class Organizer<T extends Group> {
+export abstract class Aggregator<T extends Group> {
 
   protected constructor(public dataSubject: BehaviorSubject<T[]>) {
   }
 
   abstract isGroup(index: any, item: Sample): boolean;
 
-  abstract reduceGroup(row: Group): void;
+  abstract collapseGroup(row: Group): void;
 
   abstract groupBy(data: T[]): void;
 
