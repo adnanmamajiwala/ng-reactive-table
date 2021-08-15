@@ -4,12 +4,13 @@
     <div *ngIf="dataSource.loading$ | async" class="spinner-container">
       <mat-spinner></mat-spinner>
     </div>
-    <table cdk-table [dataSource]="dataSource" class="table table-hover"
-           matSort matSortDirection="asc" matSortDisableClear>
+    <table cdk-table matSort matSortDirection="asc" matSortDisableClear
+           [dataSource]="dataSource" class="table table-hover scroll-fix">
 
       <ng-container *ngFor="let col of columnInfoList; let i=index" [cdkColumnDef]="col.name">
-        <th cdk-header-cell *cdkHeaderCellDef mat-sort-header>{{ col.displayText }}</th>
-        <td cdk-cell *cdkCellDef="let row">{{ row[col.name] }}</td>
+        <th cdk-header-cell mat-sort-header *cdkHeaderCellDef [resizeColumn]="i"
+            class="pt-3 pb-3 data">{{ col.displayText }}</th>
+        <td cdk-cell *cdkCellDef="let row" class="data">{{ row[col.name] }}</td>
       </ng-container>
 
       <tr cdk-header-row *cdkHeaderRowDef="propertyNames; sticky: true"></tr>
@@ -24,11 +25,11 @@
         </td>
       </ng-container>
 
-      <tr cdk-row class="" *cdkRowDef="let row; columns: ['groupHeader']; when: organizer.isGroup"
+      <tr cdk-row class="bg-header" *cdkRowDef="let row; columns: ['groupHeader']; when: organizer.isGroup"
           (click)="organizer.reduceGroup(row)"></tr>
 
     </table>
   </div>
-  <mat-paginator [length]="dataSource.totalElements" [pageSizeOptions]="[10, 20, 50, 100, 200, 500, 1000]"
-                 [pageSize]="50" showFirstLastButtons></mat-paginator>
+  <mat-paginator showFirstLastButtons [length]="dataSource.totalElements"
+                 [pageSizeOptions]="[10, 20, 50, 100, 200, 500, 1000]" [pageSize]="50"></mat-paginator>
 </div>
