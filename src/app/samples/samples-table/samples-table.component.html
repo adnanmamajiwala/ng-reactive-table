@@ -1,4 +1,14 @@
-<app-samples-column-selector [samplesTableDatasource]="dataSource"></app-samples-column-selector>
+<div class="row justify-content-end align-items-center mb-2">
+  <div class="col-auto pb-1">
+    <div class="input-group input-group-sm">
+      <input type="text" class="form-control" placeholder="Search">
+      <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
+    </div>
+  </div>
+  <div class="col-auto p-0 pe-1">
+    <app-samples-column-selector [samplesTableDatasource]="dataSource"></app-samples-column-selector>
+  </div>
+</div>
 <div *ngIf="!!dataSource" class="mat-elevation-z8">
   <div class="table-responsive">
     <div *ngIf="dataSource.loading$ | async" class="spinner-container">

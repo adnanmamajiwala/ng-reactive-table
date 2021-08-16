@@ -28,7 +28,7 @@ export class SamplesTableComponent implements OnInit, AfterViewInit {
   dataSource: SamplesTableDatasource;
   aggregator: SamplesTableAggregator;
 
-  constructor(public samplesService: SamplesService) {
+  constructor(private samplesService: SamplesService) {
   }
 
   ngOnInit() {
@@ -43,9 +43,7 @@ export class SamplesTableComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
-    merge(
-      this.sort.sortChange,
-      this.paginator.page)
+    merge(this.sort.sortChange, this.paginator.page)
       .pipe(tap(() => this.loadDataPage()))
       .subscribe();
   }

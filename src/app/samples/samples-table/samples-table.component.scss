@@ -64,3 +64,16 @@
 .scroll-fix {
   padding: 0.01rem !important;
 }
+
+.input-group {
+
+  input:focus {
+    box-shadow: none;
+    border: 1px solid #ced4da;
+    border-right: none;
+  }
+
+  input {
+    border-right: none;
+  }
+}

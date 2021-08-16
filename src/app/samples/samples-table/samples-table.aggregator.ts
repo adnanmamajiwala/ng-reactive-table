@@ -6,7 +6,7 @@ import {BehaviorSubject} from 'rxjs';
 export class SamplesTableAggregator extends Aggregator<Sample> {
 
   private collapsedGroups = new Set<string>();
-  private map = new Map<string, Sample[]>();
+  private groupsMap = new Map<string, Sample[]>();
 
   constructor(dataSubject: BehaviorSubject<Sample[]>) {
     super(dataSubject);
@@ -23,7 +23,7 @@ export class SamplesTableAggregator extends Aggregator<Sample> {
       this.collapsedGroups.add(row.groupName);
     }
     const grouped: Sample[] = [];
-    this.map.forEach((value, key) => {
+    this.groupsMap.forEach((value, key) => {
       if(this.collapsedGroups.has(key)){
         value[0].reduced = true;
         grouped.push(value[0]);
@@ -37,20 +37,20 @@ export class SamplesTableAggregator extends Aggregator<Sample> {
 
   groupBy(data: Sample[]): void {
     this.collapsedGroups = new Set<string>();
-    this.map = new Map<string, Sample[]>();
+    this.groupsMap = new Map<string, Sample[]>();
     const grouped: Sample[] = [];
     data.forEach(sample => {
       const groupByColumn = sample.org;
-      if (!this.map.has(groupByColumn)) {
+      if (!this.groupsMap.has(groupByColumn)) {
         const header = new Sample();
         header.groupName = groupByColumn;
         header.isGroup = true;
-        this.map.set(groupByColumn, [header]);
+        this.groupsMap.set(groupByColumn, [header]);
         grouped.push(header);
       }
       sample.reduced = false;
       grouped.push(sample);
-      this.map.get(groupByColumn)?.push(sample);
+      this.groupsMap.get(groupByColumn)?.push(sample);
     });
     this.dataSubject.next(grouped);
   }
