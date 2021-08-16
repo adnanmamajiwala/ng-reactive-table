@@ -35,8 +35,8 @@
         </td>
       </ng-container>
 
-      <tr cdk-row class="bg-header" *cdkRowDef="let row; columns: ['groupHeader']; when: aggregator.isGroup"
-          (click)="aggregator.collapseGroup(row)"></tr>
+      <tr cdk-row class="bg-header" *cdkRowDef="let row; columns: ['groupHeader']; when: dataSource.isGroup"
+          (click)="dataSource.toggle(row)"></tr>
 
     </table>
   </div>

@@ -8,11 +8,10 @@ import {SamplesTableAggregator} from './samples-table.aggregator';
 
 export class SamplesTableDatasource extends AbstractDataSource<Sample> {
 
-  private readonly _aggregator: SamplesTableAggregator;
+  private readonly aggregator: SamplesTableAggregator = new SamplesTableAggregator();
 
   constructor(private samplesService: SamplesService) {
     super();
-    this._aggregator = new SamplesTableAggregator(this.dataSubject);
   }
 
   load(filter: string, sortBy: string, sortDirection: string, pageIndex: number, pageSize: number): void {
@@ -23,7 +22,8 @@ export class SamplesTableDatasource extends AbstractDataSource<Sample> {
         finalize(() => this.loadingSubject.next(false))
       )
       .subscribe((val: Page<Sample>) => {
-        this._aggregator.buildGroups(val.content);
+        const grouped = this.aggregator.buildGroups(val.content);
+        this.dataSubject.next(grouped);
         this.totalElements = val.totalElements;
       });
   }
@@ -32,8 +32,12 @@ export class SamplesTableDatasource extends AbstractDataSource<Sample> {
     return SamplesColumnInfo;
   }
 
-  aggregator(): SamplesTableAggregator {
-    return this._aggregator;
+  isGroup(index: any, item: Sample): boolean {
+    return this.aggregator.isGroup(item);
   }
 
+  toggle(row: Sample) {
+    const grouped = this.aggregator.collapseGroup(row);
+    this.dataSubject.next(grouped);
+  }
 }

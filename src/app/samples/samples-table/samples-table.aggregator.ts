@@ -1,6 +1,5 @@
 import {Sample} from '../samples.model';
 import {Group} from '../../shared/shared.model';
-import {BehaviorSubject} from 'rxjs';
 import {Aggregator} from '../../shared/abstract-aggregator';
 
 export class SamplesTableAggregator extends Aggregator<Sample> {
@@ -8,15 +7,11 @@ export class SamplesTableAggregator extends Aggregator<Sample> {
   private collapsedGroups = new Set<string>();
   private groupsMap = new Map<string, Sample[]>();
 
-  constructor(dataSubject: BehaviorSubject<Sample[]>) {
-    super(dataSubject);
-  }
-
-  isGroup(index: any, item: Sample): boolean {
+  isGroup(item: Group): boolean {
     return item.isGroup;
   }
 
-  collapseGroup(row: Group): void {
+  collapseGroup(row: Group): Sample[] {
     if (this.collapsedGroups.has(row.groupName)) {
       this.collapsedGroups.delete(row.groupName);
     } else {
@@ -32,10 +27,10 @@ export class SamplesTableAggregator extends Aggregator<Sample> {
         grouped.push(...value);
       }
     })
-    this.dataSubject.next(grouped);
+    return grouped;
   }
 
-  buildGroups(data: Sample[]): void {
+  buildGroups(data: Sample[]): Sample[] {
     this.collapsedGroups = new Set<string>();
     this.groupsMap = new Map<string, Sample[]>();
     const grouped: Sample[] = [];
@@ -52,7 +47,7 @@ export class SamplesTableAggregator extends Aggregator<Sample> {
       grouped.push(sample);
       this.groupsMap.get(groupByColumn)?.push(sample);
     });
-    this.dataSubject.next(grouped);
+    return grouped;
   }
 
 }

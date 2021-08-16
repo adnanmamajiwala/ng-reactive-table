@@ -7,7 +7,6 @@ import {ColumnInfo} from '../../shared/shared.model';
 import {fromEvent, merge} from 'rxjs';
 import {debounceTime, distinctUntilChanged, tap} from 'rxjs/operators';
 import {SamplesTableDatasource} from './samples-table.datasource';
-import {SamplesTableAggregator} from './samples-table.aggregator';
 
 @Component({
   selector: 'app-samples-table',
@@ -27,14 +26,12 @@ export class SamplesTableComponent implements OnInit, AfterViewInit {
   columnInfoList: ColumnInfo[] = [];
   propertyNames: string[] = [];
   dataSource: SamplesTableDatasource;
-  aggregator: SamplesTableAggregator;
 
   constructor(private samplesService: SamplesService) {
   }
 
   ngOnInit() {
     this.dataSource = new SamplesTableDatasource(this.samplesService);
-    this.aggregator = this.dataSource.aggregator();
     this.dataSource.columnInfo$.subscribe((value: ColumnInfo[]) => {
       this.columnInfoList = value;
       this.propertyNames = value.map<string>(val => val.name);
