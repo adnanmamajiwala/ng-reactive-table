@@ -24,6 +24,7 @@ export class Sample extends Group {
 export const SamplesColumnInfo = [
   {name: 'id', displayText: 'Id', selected: true},
   {name: 'name', displayText: 'Name', selected: true},
+  {name: 'org', displayText: 'Org', selected: false},
   {name: 'code', displayText: 'Code', selected: true},
   {name: 'brand', displayText: 'Brand', selected: true},
   {name: 'tax', displayText: 'Tax', selected: true},

@@ -19,7 +19,7 @@ export abstract class AbstractDataSource<T> implements DataSource<T> {
     this.columnInfo$ = this.columnInfoSubject.asObservable();
   }
 
-  abstract load(sortBy: string, sortDirection: string, pageIndex: number, pageSize: number): void;
+  abstract load(filter: string, sortBy: string, sortDirection: string, pageIndex: number, pageSize: number): void;
 
   abstract setupColumnInfo(): ColumnInfo[];
 

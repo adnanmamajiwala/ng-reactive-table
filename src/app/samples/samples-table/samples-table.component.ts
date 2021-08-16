@@ -1,11 +1,11 @@
-import {AfterViewInit, Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {SamplesService} from '../samples.service';
 import {MatPaginator, MatPaginatorIntl} from '@angular/material/paginator';
 import {CustomPaginatorService} from '../../shared/custom-paginator.service';
 import {MatSort} from '@angular/material/sort';
 import {ColumnInfo} from '../../shared/shared.model';
-import {merge} from 'rxjs';
-import {tap} from 'rxjs/operators';
+import {fromEvent, merge} from 'rxjs';
+import {debounceTime, distinctUntilChanged, tap} from 'rxjs/operators';
 import {SamplesTableDatasource} from './samples-table.datasource';
 import {SamplesTableAggregator} from './samples-table.aggregator';
 
@@ -22,6 +22,7 @@ export class SamplesTableComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  @ViewChild('search') input: ElementRef;
 
   columnInfoList: ColumnInfo[] = [];
   propertyNames: string[] = [];
@@ -38,19 +39,33 @@ export class SamplesTableComponent implements OnInit, AfterViewInit {
       this.columnInfoList = value;
       this.propertyNames = value.map<string>(val => val.name);
     });
-    this.dataSource.load('org', 'ASC', 0, 50);
+    this.dataSource.load('','org', 'ASC', 0, 50);
   }
 
   ngAfterViewInit() {
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
+
     merge(this.sort.sortChange, this.paginator.page)
       .pipe(tap(() => this.loadDataPage()))
+      .subscribe();
+
+    fromEvent(this.input.nativeElement, 'keyup')
+      .pipe(
+        debounceTime(150),
+        distinctUntilChanged(),
+        tap(() => {
+          this.paginator.pageIndex = 0;
+          this.loadDataPage();
+        })
+      )
       .subscribe();
   }
 
   loadDataPage() {
+    const value = this.input.nativeElement.value;
+    const filter = !!value && value.length > 4 ? value : '';
     this.dataSource
-      .load('org', 'ASC', this.paginator.pageIndex, this.paginator.pageSize);
+      .load(filter, this.sort.active, this.sort.direction.toUpperCase(), this.paginator.pageIndex, this.paginator.pageSize);
   }
 
 }

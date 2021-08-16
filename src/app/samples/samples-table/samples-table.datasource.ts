@@ -3,7 +3,7 @@ import {Sample, SamplesColumnInfo} from '../samples.model';
 import {SamplesService} from '../samples.service';
 import {catchError, finalize} from 'rxjs/operators';
 import {of} from 'rxjs';
-import {ColumnInfo, Page, SortDirection} from '../../shared/shared.model';
+import {ColumnInfo, Page} from '../../shared/shared.model';
 import {SamplesTableAggregator} from './samples-table.aggregator';
 
 export class SamplesTableDatasource extends AbstractDataSource<Sample> {
@@ -15,9 +15,9 @@ export class SamplesTableDatasource extends AbstractDataSource<Sample> {
     this._aggregator = new SamplesTableAggregator(this.dataSubject);
   }
 
-  load(sortBy: string, sortDirection: SortDirection, pageIndex: number, pageSize: number): void {
+  load(filter: string, sortBy: string, sortDirection: string, pageIndex: number, pageSize: number): void {
     this.loadingSubject.next(true);
-    this.samplesService.getAll(pageIndex, pageSize, sortBy, sortDirection)
+    this.samplesService.getAll(filter, pageIndex, pageSize, sortBy, sortDirection)
       .pipe(
         catchError(() => of(new Page<Sample>())),
         finalize(() => this.loadingSubject.next(false))

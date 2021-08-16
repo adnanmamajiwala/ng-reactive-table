@@ -5,8 +5,6 @@ export class Page<T> {
   totalPages: number;
 }
 
-export type SortDirection = 'ASC' | 'DESC';
-
 export class ColumnInfo {
   displayText: string;
   name: string;
