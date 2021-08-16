@@ -10,7 +10,7 @@
           <ng-container *ngFor="let col of columnInfoList; let i=index">
             <div class="row">
               <div class="col-1 align-self-center text-end pb-1">{{i + 1}}.</div>
-              <div cdkDrag class="col-10 shadow item-card bg-body rounded">
+              <div cdkDrag class="col-10 shadow item-card rounded">
                 <div class="form-check-inline">
                   <input #cb (click)="onClick($event, i, col, cb)" [checked]=col.selected
                          [value]="col"
