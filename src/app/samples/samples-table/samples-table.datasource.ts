@@ -33,7 +33,7 @@ export class SamplesTableDatasource extends AbstractDataSource<Sample> {
   }
 
   isGroup(index: any, item: Sample): boolean {
-    return this.aggregator.isGroup(item);
+    return item.isGroup;
   }
 
   toggle(row: Sample) {

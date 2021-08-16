@@ -7,10 +7,6 @@ export class SamplesTableAggregator extends Aggregator<Sample> {
   private collapsedGroups = new Set<string>();
   private groupsMap = new Map<string, Sample[]>();
 
-  isGroup(item: Group): boolean {
-    return item.isGroup;
-  }
-
   collapseGroup(row: Group): Sample[] {
     if (this.collapsedGroups.has(row.groupName)) {
       this.collapsedGroups.delete(row.groupName);
