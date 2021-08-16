@@ -23,7 +23,7 @@ export class SamplesTableDatasource extends AbstractDataSource<Sample> {
         finalize(() => this.loadingSubject.next(false))
       )
       .subscribe((val: Page<Sample>) => {
-        this._aggregator.groupBy(val.content);
+        this._aggregator.buildGroups(val.content);
         this.totalElements = val.totalElements;
       });
   }

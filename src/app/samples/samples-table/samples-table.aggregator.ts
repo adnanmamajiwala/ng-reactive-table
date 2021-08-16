@@ -1,7 +1,7 @@
-import {Aggregator} from '../../shared/abstract-data-source';
 import {Sample} from '../samples.model';
 import {Group} from '../../shared/shared.model';
 import {BehaviorSubject} from 'rxjs';
+import {Aggregator} from '../../shared/abstract-aggregator';
 
 export class SamplesTableAggregator extends Aggregator<Sample> {
 
@@ -35,7 +35,7 @@ export class SamplesTableAggregator extends Aggregator<Sample> {
     this.dataSubject.next(grouped);
   }
 
-  groupBy(data: Sample[]): void {
+  buildGroups(data: Sample[]): void {
     this.collapsedGroups = new Set<string>();
     this.groupsMap = new Map<string, Sample[]>();
     const grouped: Sample[] = [];

@@ -1,7 +1,6 @@
 import {CollectionViewer, DataSource} from '@angular/cdk/collections';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {ColumnInfo, Group} from './shared.model';
-import {Sample} from '../samples/samples.model';
+import {ColumnInfo} from './shared.model';
 
 export abstract class AbstractDataSource<T> implements DataSource<T> {
 
@@ -38,15 +37,3 @@ export abstract class AbstractDataSource<T> implements DataSource<T> {
   }
 }
 
-export abstract class Aggregator<T extends Group> {
-
-  protected constructor(public dataSubject: BehaviorSubject<T[]>) {
-  }
-
-  abstract isGroup(index: any, item: Sample): boolean;
-
-  abstract collapseGroup(row: Group): void;
-
-  abstract groupBy(data: T[]): void;
-
-}

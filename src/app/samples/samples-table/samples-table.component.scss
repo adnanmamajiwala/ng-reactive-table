@@ -12,6 +12,10 @@
     padding-left: 2.75rem;
   }
 
+  .data {
+    white-space:nowrap;
+  }
+
   .cdk-header-cell {
     &:not(:last-child) {
       .resize-holder {
