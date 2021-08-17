@@ -9,7 +9,7 @@
     <app-samples-column-selector [samplesTableDatasource]="dataSource"></app-samples-column-selector>
   </div>
 </div>
-<div *ngIf="!!dataSource">
+<div *ngIf="!!dataSource" class="samples-table">
   <div class="table-responsive">
     <div *ngIf="dataSource.loading$ | async" class="spinner-container">
       <mat-spinner></mat-spinner>
