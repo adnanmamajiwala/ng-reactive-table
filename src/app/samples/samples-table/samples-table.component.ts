@@ -37,7 +37,7 @@ export class SamplesTableComponent implements OnInit, AfterViewInit {
       this.columnInfoList = value;
       this.propertyNames = value.map<string>(val => val.name);
     });
-    this.dataSource.load(this.build('', 'org', 'ASC', 0, 50));
+    this.dataSource.load(this.build('', 'id', 'ASC', 0, 50));
   }
 
   ngAfterViewInit() {

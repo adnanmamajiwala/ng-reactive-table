@@ -15,8 +15,8 @@ export class SamplesService {
   constructor(private httpClient: HttpClient) {
   }
 
-  getAll(filter: string = '', pageNumber: number = 0, pageSize: number = 10,
-         sortBy: string = '', sortDirection: string): Observable<Page<Sample>> {
+  getAll(filter: string = '', pageNumber: number = 0, pageSize: number = 50,
+         sortBy: string = 'id', sortDirection: string = 'ASC'): Observable<Page<Sample>> {
     const url = `${this.endpoint}?text=${filter}&pageNumber=${pageNumber}&pageSize=${pageSize}&sortBy=${sortBy}&sortDirection=${sortDirection}`;
     return this.httpClient.get<Page<Sample>>(url);
   }
