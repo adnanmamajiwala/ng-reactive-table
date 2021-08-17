@@ -1,37 +1,37 @@
 <div class="row justify-content-end align-items-center mb-2">
   <div class="col-auto pb-1">
-    <div class="input-group input-group-sm">
-      <input type="text" class="form-control" placeholder="Search" #search>
+    <div class="input-group">
       <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
+      <input type="text" class="form-control ps-0" placeholder="Search" #search>
     </div>
   </div>
   <div class="col-auto p-0 pe-1">
     <app-samples-column-selector [samplesTableDatasource]="dataSource"></app-samples-column-selector>
   </div>
 </div>
-<div *ngIf="!!dataSource" class="mat-elevation-z8">
+<div *ngIf="!!dataSource">
   <div class="table-responsive">
     <div *ngIf="dataSource.loading$ | async" class="spinner-container">
       <mat-spinner></mat-spinner>
     </div>
     <table cdk-table matSort matSortActive="org" matSortDirection="asc" matSortDisableClear
-           [dataSource]="dataSource" class="table table-hover scroll-fix">
+           [dataSource]="dataSource" class="table table-hover scroll-fix mb-0">
 
       <ng-container *ngFor="let col of columnInfoList; let i=index" [cdkColumnDef]="col.name">
         <th cdk-header-cell mat-sort-header *cdkHeaderCellDef [resizeColumn]="i"
             class="pt-3 pb-3 data">{{ col.displayText }}</th>
-        <td cdk-cell *cdkCellDef="let row" class="data">{{ row[col.name] }}</td>
+        <td cdk-cell *cdkCellDef="let row" class="data pt-1 pb-1">{{ row[col.name] }}</td>
       </ng-container>
 
       <tr cdk-header-row *cdkHeaderRowDef="propertyNames; sticky: true"></tr>
       <tr cdk-row *cdkRowDef="let row; columns: propertyNames;"></tr>
 
       <ng-container cdkColumnDef="groupHeader">
-        <td colspan="999" cdk-cell *cdkCellDef="let group">
+        <td colspan="999" class="group-header pt-2 pb-2" cdk-cell *cdkCellDef="let group">
           <button class="btn btn-link p-0 pe-3 text-secondary">
             <i class="bi" [ngClass]="group['reduced'] ? 'bi-plus-square' : 'bi-dash-square'"></i>
           </button>
-          <strong>{{group['groupName']}}</strong>
+          {{group['groupName']}}
         </td>
       </ng-container>
 

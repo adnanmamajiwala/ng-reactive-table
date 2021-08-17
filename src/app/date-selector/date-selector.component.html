@@ -1,9 +1,9 @@
 <div class="row">
   <div class="col-auto">
-    <div class="input-group mb-3">
+    <div class="input-group mb-3 date-month">
       <input type="text" class="form-control" [formControl]="date"
              [matDatepicker]="datepicker" [max]="maxDate" [min]="minDate">
-      <button class="btn btn-outline-secondary" (click)="toggle._open($event)">
+      <button class="btn btn-outline-secondary pt-0 pb-0" (click)="toggle._open($event)">
         <i class="bi bi-calendar3"></i>
       </button>
     </div>
