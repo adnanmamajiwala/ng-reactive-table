@@ -48,11 +48,15 @@ export class SamplesTableComponent implements OnInit, AfterViewInit {
 
     fromEvent(this.input.nativeElement, 'keyup')
       .pipe(
-        debounceTime(150),
+        debounceTime(350),
         distinctUntilChanged(),
         tap(() => {
-          this.paginator.pageIndex = 0;
-          this.loadDataPage();
+          if(this.input.nativeElement.value.length > 3) {
+            this.paginator.pageIndex = 0;
+            this.sort.active = 'org'
+            this.sort.direction = 'asc';
+            this.loadDataPage();
+          }
         })
       )
       .subscribe();
@@ -60,7 +64,7 @@ export class SamplesTableComponent implements OnInit, AfterViewInit {
 
   loadDataPage() {
     const value = this.input.nativeElement.value;
-    const filter = !!value && value.length > 4 ? value : '';
+    const filter = !!value && value.length > 3 ? value : '';
     this.dataSource
       .load(filter, this.sort.active, this.sort.direction.toUpperCase(), this.paginator.pageIndex, this.paginator.pageSize);
   }
