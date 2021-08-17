@@ -1,15 +1,17 @@
-<div class="m-3">
-  <mat-form-field appearance="fill">
-    <mat-label>Month and Year</mat-label>
-    <input [formControl]="date"
-           [matDatepicker]="datepicker" [max]="maxDate" [min]="minDate" class="text-dark"
-           matInput>
-    <mat-datepicker-toggle [for]="datepicker" matSuffix></mat-datepicker-toggle>
+<div class="row">
+  <div class="col-auto">
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" [formControl]="date"
+             [matDatepicker]="datepicker" [max]="maxDate" [min]="minDate">
+      <button class="btn btn-outline-secondary" (click)="toggle._open($event)">
+        <i class="bi bi-calendar3"></i>
+      </button>
+    </div>
+    <mat-datepicker-toggle #toggle class="cdk-visually-hidden" [for]="datepicker"></mat-datepicker-toggle>
     <mat-datepicker #datepicker
                     (monthSelected)="chosenMonthHandler($event, datepicker)"
                     disabled="false"
                     panelClass="month-picker-only"
-                    startView="year">
-    </mat-datepicker>
-  </mat-form-field>
+                    startView="year"></mat-datepicker>
+  </div>
 </div>

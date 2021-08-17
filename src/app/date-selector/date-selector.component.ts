@@ -8,11 +8,11 @@ import {Moment} from 'moment';
 
 export const MY_FORMATS = {
   parse: {
-    dateInput: 'MMM - YYYY',
+    dateInput: 'MMMM - YYYY',
   },
   display: {
-    dateInput: 'MMM - YYYY',
-    monthYearLabel: 'MMM YYYY',
+    dateInput: 'MMMM - YYYY',
+    monthYearLabel: 'MMMM YYYY',
     dateA11yLabel: 'LL',
     monthYearA11yLabel: 'MMMM YYYY',
   },

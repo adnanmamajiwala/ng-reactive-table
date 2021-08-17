@@ -1,30 +1,30 @@
 <div class="container mt-3">
-  <ul #nav="ngbNav" class="nav-pills mb-5" ngbNav>
-    <li ngbNavItem>
+  <ul #nav="ngbNav" class="nav-pills mb-5" ngbNav [activeId]="1">
+    <li [ngbNavItem]="1">
       <a ngbNavLink>Table 1</a>
       <ng-template ngbNavContent>
         <app-samples></app-samples>
       </ng-template>
     </li>
-    <li ngbNavItem>
+    <li [ngbNavItem]="2">
       <a ngbNavLink>Table 2</a>
       <ng-template ngbNavContent>
         <app-employees></app-employees>
       </ng-template>
     </li>
-    <li ngbNavItem>
+    <li [ngbNavItem]="3">
       <a ngbNavLink>Table 2</a>
       <ng-template ngbNavContent>
         <app-cars></app-cars>
       </ng-template>
     </li>
-    <li ngbNavItem>
+    <li [ngbNavItem]="4">
       <a ngbNavLink>Month Year picker</a>
       <ng-template ngbNavContent>
         <app-date-selector></app-date-selector>
       </ng-template>
     </li>
-    <li ngbNavItem>
+    <li [ngbNavItem]="5">
       <a ngbNavLink>Chart</a>
       <ng-template ngbNavContent>
         <app-small-large-chart></app-small-large-chart>
