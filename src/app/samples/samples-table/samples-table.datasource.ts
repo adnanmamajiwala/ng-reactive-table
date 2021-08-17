@@ -1,12 +1,12 @@
 import {AbstractDataSource} from '../../shared/abstract-data-source';
-import {Sample, SamplesColumnInfo} from '../samples.model';
+import {Sample, SamplesColumnInfo, SamplesFilterRequest} from '../samples.model';
 import {SamplesService} from '../samples.service';
 import {catchError, finalize} from 'rxjs/operators';
 import {of} from 'rxjs';
 import {ColumnInfo, Page} from '../../shared/shared.model';
 import {SamplesTableAggregator} from './samples-table.aggregator';
 
-export class SamplesTableDatasource extends AbstractDataSource<Sample> {
+export class SamplesTableDatasource extends AbstractDataSource<Sample, SamplesFilterRequest> {
 
   private readonly aggregator: SamplesTableAggregator = new SamplesTableAggregator();
 
@@ -14,9 +14,9 @@ export class SamplesTableDatasource extends AbstractDataSource<Sample> {
     super();
   }
 
-  load(filter: string, sortBy: string, sortDirection: string, pageIndex: number, pageSize: number): void {
+  load(request: SamplesFilterRequest): void {
     this.loadingSubject.next(true);
-    this.samplesService.getAll(filter, pageIndex, pageSize, sortBy, sortDirection)
+    this.samplesService.getAll(request.filter, request.pageIndex, request.pageSize, request.sortBy, request.sortDirection)
       .pipe(
         catchError(() => of(new Page<Sample>())),
         finalize(() => this.loadingSubject.next(false))

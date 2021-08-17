@@ -2,9 +2,9 @@ import {CollectionViewer, DataSource} from '@angular/cdk/collections';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {ColumnInfo} from './shared.model';
 
-export abstract class AbstractDataSource<T> implements DataSource<T> {
+export abstract class AbstractDataSource<DataType, FilterRequest> implements DataSource<DataType> {
 
-  protected dataSubject: BehaviorSubject<T[]>;
+  protected dataSubject: BehaviorSubject<DataType[]>;
   protected columnInfoSubject: BehaviorSubject<ColumnInfo[]>;
   protected loadingSubject: BehaviorSubject<boolean>;
   public loading$: Observable<boolean>;
@@ -12,14 +12,14 @@ export abstract class AbstractDataSource<T> implements DataSource<T> {
   public totalElements: number;
 
   protected constructor() {
-    this.dataSubject = new BehaviorSubject<T[]>([]);
+    this.dataSubject = new BehaviorSubject<DataType[]>([]);
     this.columnInfoSubject = new BehaviorSubject<ColumnInfo[]>(this.setupColumnInfo());
     this.loadingSubject = new BehaviorSubject<boolean>(false);
     this.loading$ = this.loadingSubject.asObservable();
     this.columnInfo$ = this.columnInfoSubject.asObservable();
   }
 
-  abstract load(filter: string, sortBy: string, sortDirection: string, pageIndex: number, pageSize: number): void;
+  abstract load(filterRequest: FilterRequest): void;
 
   abstract setupColumnInfo(): ColumnInfo[];
 
@@ -27,7 +27,7 @@ export abstract class AbstractDataSource<T> implements DataSource<T> {
     this.columnInfoSubject.next(columnInfos);
   }
 
-  connect(collectionViewer: CollectionViewer): Observable<T[]> {
+  connect(collectionViewer: CollectionViewer): Observable<DataType[]> {
     return this.dataSubject.asObservable();
   }
 

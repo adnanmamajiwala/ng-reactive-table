@@ -21,6 +21,14 @@ export class Sample extends Group {
   createDate: string;
 }
 
+export class SamplesFilterRequest {
+  filter: string;
+  sortBy: string;
+  sortDirection: string;
+  pageIndex: number;
+  pageSize: number;
+}
+
 export const SamplesColumnInfo = [
   {name: 'id', displayText: 'Id', selected: true},
   {name: 'name', displayText: 'Name', selected: true},

@@ -7,6 +7,7 @@ import {ColumnInfo} from '../../shared/shared.model';
 import {fromEvent, merge} from 'rxjs';
 import {debounceTime, distinctUntilChanged, tap} from 'rxjs/operators';
 import {SamplesTableDatasource} from './samples-table.datasource';
+import {SamplesFilterRequest} from '../samples.model';
 
 @Component({
   selector: 'app-samples-table',
@@ -36,7 +37,7 @@ export class SamplesTableComponent implements OnInit, AfterViewInit {
       this.columnInfoList = value;
       this.propertyNames = value.map<string>(val => val.name);
     });
-    this.dataSource.load('', 'org', 'ASC', 0, 50);
+    this.dataSource.load(this.build('', 'org', 'ASC', 0, 50));
   }
 
   ngAfterViewInit() {
@@ -51,9 +52,9 @@ export class SamplesTableComponent implements OnInit, AfterViewInit {
         debounceTime(350),
         distinctUntilChanged(),
         tap(() => {
-          if(this.input.nativeElement.value.length > 3) {
+          if (this.input.nativeElement.value.length > 3) {
             this.paginator.pageIndex = 0;
-            this.sort.active = 'org'
+            this.sort.active = 'org';
             this.sort.direction = 'asc';
             this.loadDataPage();
           }
@@ -66,8 +67,17 @@ export class SamplesTableComponent implements OnInit, AfterViewInit {
     const value = this.input.nativeElement.value;
     const filter = !!value && value.length > 3 ? value : '';
     this.dataSource
-      .load(filter, this.sort.active, this.sort.direction.toUpperCase(), this.paginator.pageIndex, this.paginator.pageSize);
+      .load(this.build(filter, this.sort.active, this.sort.direction.toUpperCase(), this.paginator.pageIndex, this.paginator.pageSize));
   }
 
+  private build(filterText: string, sortBy: string, sortDir: string, pageNumber: number, pageSize: number): SamplesFilterRequest {
+    return {
+      filter: filterText,
+      sortBy: sortBy,
+      sortDirection: sortDir,
+      pageIndex: pageNumber,
+      pageSize: pageSize,
+    };
+  }
 }
 
