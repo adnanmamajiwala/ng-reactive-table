@@ -5,20 +5,20 @@
   line-height: var(--bs-body-line-height);
   overflow: auto;
   padding-right: 1px;
-}
 
-.table-responsive::-webkit-scrollbar {
-  width: 2em;
-  height: 1.5em
-}
+  &::-webkit-scrollbar {
+    width: 2em;
+    height: 1.5em
+  }
 
-.table-responsive::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 6px rgb(148, 147, 147);
-}
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgb(148, 147, 147);
+  }
 
-.table-responsive::-webkit-scrollbar-thumb {
-  background: #00598E;
-  border-radius: 5px;
+  &::-webkit-scrollbar-thumb {
+    background: #00598E;
+    border-radius: 5px;
+  }
 }
 
 .samples-table {
@@ -45,12 +45,12 @@
     }
   }
 
-  .data:first-child {
-    padding-left: 2.75rem;
-  }
-
   .data {
     white-space: nowrap;
+
+    &:first-child {
+      padding-left: 2.75rem;
+    }
   }
 
   th, td {
