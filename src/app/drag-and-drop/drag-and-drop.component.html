@@ -6,8 +6,8 @@
       <div class="" *cdkDragPlaceholder></div>
       <div class="d-flex">
         <div class="form-check-inline">
-          <input [checked]=col.selected [value]="col"
-                 (click)="onClick($event, i, col)"
+          <input [checked]=col.selected
+                 [value]="col"
                  class="form-check-input ms-1 me-2 mb-1 align-top"
                  type="checkbox">
           <label class="form-check-label grab">{{col.displayText}}</label>
@@ -17,4 +17,3 @@
     </div>
   </div>
 </div>
-

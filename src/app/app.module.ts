@@ -41,6 +41,7 @@ import {CdkTableModule} from '@angular/cdk/table';
 import {SamplesComponent} from './samples/samples.component';
 import {SamplesTableComponent} from './samples/samples-table/samples-table.component';
 import {SamplesColumnSelectorComponent} from './samples/samples-table/samples-column-selector/samples-column-selector.component';
+import {DragAndDropComponent} from './drag-and-drop/drag-and-drop.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import {SamplesColumnSelectorComponent} from './samples/samples-table/samples-co
     SamplesComponent,
     SamplesTableComponent,
     SamplesColumnSelectorComponent,
+    DragAndDropComponent
   ],
   imports: [
     BrowserModule,
@@ -89,7 +91,7 @@ import {SamplesColumnSelectorComponent} from './samples/samples-table/samples-co
     CdkTableModule,
   ],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
   constructor(library: FaIconLibrary) {

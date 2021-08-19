@@ -14,7 +14,7 @@ export class SamplesColumnSelectorComponent implements OnInit {
   @Input() samplesTableDatasource: SamplesTableDatasource;
   columnInfoList: ColumnInfo[] = [];
 
-  constructor(private modalService: NgbModal) {
+  constructor() {
   }
 
   ngOnInit(): void {
@@ -22,18 +22,28 @@ export class SamplesColumnSelectorComponent implements OnInit {
     this.updateDataTable();
   }
 
-  onClick($event: any, pos: number, col: ColumnInfo, cb: HTMLInputElement) {
+  onClick($event: any, pos: number, col: ColumnInfo) {
     col.selected = $event.target.checked;
     this.updateDataTable();
   }
 
-  drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.columnInfoList, event.previousIndex, event.currentIndex);
-    this.updateDataTable();
-  }
+  drop(event: CdkDragDrop<any>) {
+    let currentIndex = event.container.data.index;
+    let previousIndex = event.previousContainer.data.index;
+    const selectedItem = event.previousContainer.data.item;
 
-  open(content: TemplateRef<any>) {
-    this.modalService.open(content, {scrollable: true});
+    if (previousIndex > currentIndex) {
+      for (previousIndex; previousIndex > currentIndex; previousIndex--) {
+        this.columnInfoList[previousIndex] = this.columnInfoList[previousIndex - 1];
+      }
+    } else {
+      for (previousIndex; previousIndex < currentIndex; previousIndex++) {
+        this.columnInfoList[previousIndex] = this.columnInfoList[previousIndex + 1];
+      }
+    }
+
+    this.columnInfoList[currentIndex] = selectedItem;
+    this.updateDataTable();
   }
 
   private updateDataTable(): void {

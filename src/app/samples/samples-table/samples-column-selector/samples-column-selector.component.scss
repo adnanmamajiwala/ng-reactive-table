@@ -1,19 +1,14 @@
-h5 {
-  font-size: 1.25rem !important;
-  font-weight: 500 !important;
-  margin: 0 !important;
+.bd-highlight {
+  background-color: rgba(86,61,124,0.15);
+  border: 1px solid rgba(86,61,124,0.15);
+}
+
+.bd-card {
+  width: 12rem;
 }
 
 .btn:focus {
   box-shadow: none;
-}
-
-html.cdk-global-scrollblock {
-  position: initial !important;
-}
-
-html.cdk-global-scrollblock body {
-  position: fixed;
 }
 
 .cdk-drag-preview {
@@ -40,24 +35,6 @@ html.cdk-global-scrollblock body {
   &:active {
     cursor: grabbing !important;
   }
-}
-
-.item-card {
-  padding: 0.5rem;
-  margin-right: 0.25rem;
-  margin-left: 0.25rem;
-  margin-bottom: 0.75rem;
-  justify-content: space-between;
-  display: flex;
-}
-
-.cdk-drag {
-  z-index: 10000 !important;
-}
-
-.item-card-active {
-  background-color: grey !important;
-  cursor: grabbing !important;
 }
 
 .btn-lg {

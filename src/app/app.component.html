@@ -30,6 +30,12 @@
         <app-small-large-chart></app-small-large-chart>
       </ng-template>
     </li>
+    <li [ngbNavItem]="6">
+      <a ngbNavLink>Drag & Drop</a>
+      <ng-template ngbNavContent>
+        <app-drag-and-drop></app-drag-and-drop>
+      </ng-template>
+    </li>
   </ul>
   <div [ngbNavOutlet]="nav"></div>
 </div>
