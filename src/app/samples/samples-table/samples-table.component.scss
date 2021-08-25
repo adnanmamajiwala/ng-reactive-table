@@ -90,6 +90,21 @@
   .spinner-container mat-spinner {
     margin: 130px auto 0 auto;
   }
+
+  .cdk-header-cell.cdk-column-tax {
+    text-align: right;
+  }
+
+  .cdk-row {
+    .cdk-column-tax {
+      text-align: right;
+
+      &:before {
+        content: '$ ';
+      }
+    }
+  }
+
 }
 
 .search {

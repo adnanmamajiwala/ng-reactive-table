@@ -31,7 +31,7 @@
         <th cdk-header-cell *cdkHeaderCellDef [resizeColumn]="i" class="pt-3 pb-3 data">
           <div mat-sort-header>{{col.displayText}}</div>
         </th>
-        <td cdk-cell *cdkCellDef="let row" class="data pt-1 pb-1">{{ row[col.name] }}</td>
+        <td cdk-cell *cdkCellDef="let row" class="data pt-1 pb-1">{{ row[col.name] | samplesTable:col.name }}</td>
       </ng-container>
 
       <tr cdk-header-row *cdkHeaderRowDef="propertyNames; sticky: true"></tr>

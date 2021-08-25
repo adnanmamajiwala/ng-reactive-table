@@ -42,6 +42,7 @@ import {SamplesComponent} from './samples/samples.component';
 import {SamplesTableComponent} from './samples/samples-table/samples-table.component';
 import {SamplesColumnSelectorComponent} from './samples/samples-table/samples-column-selector/samples-column-selector.component';
 import {DragAndDropComponent} from './drag-and-drop/drag-and-drop.component';
+import { SamplesTablePipe } from './samples/samples-table/samples-table.pipe';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import {DragAndDropComponent} from './drag-and-drop/drag-and-drop.component';
     SamplesComponent,
     SamplesTableComponent,
     SamplesColumnSelectorComponent,
-    DragAndDropComponent
+    DragAndDropComponent,
+    SamplesTablePipe
   ],
   imports: [
     BrowserModule,

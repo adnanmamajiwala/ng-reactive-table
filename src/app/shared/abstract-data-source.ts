@@ -13,7 +13,8 @@ export abstract class AbstractDataSource<DataType, FilterRequest> implements Dat
 
   protected constructor() {
     this.dataSubject = new BehaviorSubject<DataType[]>([]);
-    this.columnInfoSubject = new BehaviorSubject<ColumnInfo[]>(this.setupColumnInfo());
+    const filtered = this.setupColumnInfo().filter((colInfo) => colInfo.selected);
+    this.columnInfoSubject = new BehaviorSubject<ColumnInfo[]>(filtered);
     this.loadingSubject = new BehaviorSubject<boolean>(false);
     this.loading$ = this.loadingSubject.asObservable();
     this.columnInfo$ = this.columnInfoSubject.asObservable();
