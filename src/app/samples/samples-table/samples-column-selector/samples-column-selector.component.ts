@@ -1,6 +1,5 @@
-import {Component, Input, OnInit, TemplateRef} from '@angular/core';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import {Component, Input, OnInit} from '@angular/core';
+import {CdkDragDrop} from '@angular/cdk/drag-drop';
 import {SamplesTableDatasource} from '../samples-table.datasource';
 import {ColumnInfo} from '../../../shared/shared.model';
 
@@ -28,21 +27,11 @@ export class SamplesColumnSelectorComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<any>) {
-    let currentIndex = event.container.data.index;
-    let previousIndex = event.previousContainer.data.index;
+    const currentIndex = event.container.data.index;
+    const previousIndex = event.previousContainer.data.index;
     const selectedItem = event.previousContainer.data.item;
-
-    if (previousIndex > currentIndex) {
-      for (previousIndex; previousIndex > currentIndex; previousIndex--) {
-        this.columnInfoList[previousIndex] = this.columnInfoList[previousIndex - 1];
-      }
-    } else {
-      for (previousIndex; previousIndex < currentIndex; previousIndex++) {
-        this.columnInfoList[previousIndex] = this.columnInfoList[previousIndex + 1];
-      }
-    }
-
-    this.columnInfoList[currentIndex] = selectedItem;
+    this.columnInfoList.splice(previousIndex, 1);
+    this.columnInfoList.splice(currentIndex, 0, selectedItem);
     this.updateDataTable();
   }
 

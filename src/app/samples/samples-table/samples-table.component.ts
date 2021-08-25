@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {SamplesService} from '../samples.service';
 import {MatPaginator, MatPaginatorIntl} from '@angular/material/paginator';
 import {CustomPaginatorService} from '../../shared/custom-paginator.service';
@@ -13,7 +13,6 @@ import {SamplesFilterRequest} from '../samples.model';
   selector: 'app-samples-table',
   templateUrl: './samples-table.component.html',
   styleUrls: ['./samples-table.component.scss'],
-  encapsulation: ViewEncapsulation.None,
   providers: [
     {provide: MatPaginatorIntl, useClass: CustomPaginatorService}
   ]

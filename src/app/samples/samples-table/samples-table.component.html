@@ -28,8 +28,9 @@
            [dataSource]="dataSource" class="table table-hover scroll-fix mb-0">
 
       <ng-container *ngFor="let col of columnInfoList; let i=index" [cdkColumnDef]="col.name">
-        <th cdk-header-cell mat-sort-header *cdkHeaderCellDef [resizeColumn]="i"
-            class="pt-3 pb-3 data">{{ col.displayText }}</th>
+        <th cdk-header-cell *cdkHeaderCellDef [resizeColumn]="i" class="pt-3 pb-3 data">
+          <div mat-sort-header>{{col.displayText}}</div>
+        </th>
         <td cdk-cell *cdkCellDef="let row" class="data pt-1 pb-1">{{ row[col.name] }}</td>
       </ng-container>
 
@@ -45,7 +46,7 @@
         </td>
       </ng-container>
 
-      <tr cdk-row class="bg-header" *cdkRowDef="let row; columns: ['groupHeader']; when: dataSource.isGroup"
+      <tr cdk-row *cdkRowDef="let row; columns: ['groupHeader']; when: dataSource.isGroup"
           (click)="dataSource.toggle(row)"></tr>
 
     </table>
