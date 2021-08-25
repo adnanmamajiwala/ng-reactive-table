@@ -1,4 +1,5 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import {Pipe, PipeTransform} from '@angular/core';
+import {DecimalPipe} from '@angular/common';
 
 @Pipe({
   name: 'samplesTable'
@@ -6,9 +7,16 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class SamplesTablePipe implements PipeTransform {
 
   transform(value: string, colName: string): string {
-    if(colName === 'tax') return Number(value).toFixed(2);
-    if(colName === 'price') return `$ ${Number(value).toFixed(2)}`;
-    return value;
+    let response: string = value;
+    if (colName === 'tax') {
+      response = this.convert(value);
+    } else if (colName === 'price') {
+      response = `$ ${this.convert(value)}`;
+    }
+    return response;
   }
 
+  private convert(value: string) {
+    return new DecimalPipe('en').transform(value, '1.2-2', 'en') || '';
+  }
 }
