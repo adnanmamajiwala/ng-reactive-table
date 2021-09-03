@@ -1,0 +1,26 @@
+.date-month {
+  input {
+    border-color: #A8ADB0;
+    color: #5E7389;
+    border-right: none;
+    pointer-events: none;
+    border-width: 0.1rem;
+    border-radius: 6px;
+  }
+
+  button {
+    color: #5E7389;
+    border-color: #A8ADB0;
+    border-left: none;
+    border-width: 0.1rem;
+    border-radius: 6px;
+  }
+
+  button:hover {
+    background-color: #fff;
+  }
+
+  .bi-calendar3 {
+    font-size: 24px;
+  }
+}
