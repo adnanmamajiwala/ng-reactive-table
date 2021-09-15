@@ -1,7 +1,7 @@
 <ngb-accordion #acc="ngbAccordion">
   <ngb-panel id="columns-setting">
     <ng-template ngbPanelHeader></ng-template>
-    <ng-template  ngbPanelContent>
+    <ng-template ngbPanelContent>
       <app-samples-column-selector [samplesTableDatasource]="dataSource"></app-samples-column-selector>
     </ng-template>
   </ngb-panel>
@@ -21,8 +21,10 @@
 </div>
 <div *ngIf="!!dataSource" class="samples-table">
   <div class="table-responsive">
-    <div *ngIf="dataSource.loading$ | async" class="spinner-container">
-      <mat-spinner></mat-spinner>
+    <div class="d-flex">
+      <div class="spinner-container justify-content-center">
+        <mat-spinner></mat-spinner>
+      </div>
     </div>
     <table cdk-table matSort matSortActive="id" matSortDirection="asc" matSortDisableClear
            [dataSource]="dataSource" class="table table-hover scroll-fix mb-0">

@@ -22,17 +22,8 @@ export class DragAndDropComponent implements OnInit {
     let currentIndex = event.container.data.index;
     let previousIndex = event.previousContainer.data.index;
     const selectedItem = event.previousContainer.data.item;
-
-    if (previousIndex > currentIndex) {
-      for (previousIndex; previousIndex > currentIndex; previousIndex--) {
-        this.columnInfoList[previousIndex] = this.columnInfoList[previousIndex - 1];
-      }
-    } else {
-      for (previousIndex; previousIndex < currentIndex; previousIndex++) {
-        this.columnInfoList[previousIndex] = this.columnInfoList[previousIndex + 1];
-      }
-    }
-
-    this.columnInfoList[currentIndex] = selectedItem;
+    this.columnInfoList.splice(previousIndex, 1);
+    this.columnInfoList.splice(currentIndex, 0, selectedItem);
+    // this.columnInfoList[currentIndex] = selectedItem;
   }
 }

@@ -1,0 +1,27 @@
+<div class="align-content-around bg-light p-2" cdkDropListGroup>
+  <div *ngFor="let row of [0,1,2,3]; let i=index">
+    <div class="row">
+      <ng-template ngFor let-col [ngForOf]="[0,4,8,12,16]">
+        <div class="col-sm-2" [class.offset-1]="col===0">
+          <div *ngIf="col+row < columnInfoList.length"
+               cdkDropList cdkDropListOrientation="horizontal"
+               [cdkDropListData]="{item:columnInfoList[col+row],index:col+row}" (cdkDropListDropped)="drop($event)">
+            <div class="p-2 m-2 bg-white bd-card border border-secondary" cdkDrag>
+              <div *cdkDragPlaceholder></div>
+              <div class="d-flex">
+                <div class="form-check-inline">
+                  <input [checked]=columnInfoList[col+row].selected
+                         [value]="columnInfoList[col+row]"
+                         class="form-check-input ms-1 me-2 mb-1 align-top"
+                         type="checkbox">
+                  <label class="form-check-label grab">{{columnInfoList[col + row].displayText}}</label>
+                </div>
+                <i class="bi bi-grip-vertical grab ms-auto"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

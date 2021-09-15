@@ -44,6 +44,7 @@ import {SamplesColumnSelectorComponent} from './samples/samples-table/samples-co
 import {DragAndDropComponent} from './drag-and-drop/drag-and-drop.component';
 import { SamplesTablePipe } from './samples/samples-table/samples-table.pipe';
 import { WeekSelectorComponent } from './week-selector/week-selector.component';
+import { DragAndDropFixedComponent } from './drag-and-drop-fixed/drag-and-drop-fixed.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { WeekSelectorComponent } from './week-selector/week-selector.component';
     SamplesColumnSelectorComponent,
     DragAndDropComponent,
     SamplesTablePipe,
-    WeekSelectorComponent
+    WeekSelectorComponent,
+    DragAndDropFixedComponent
   ],
   imports: [
     BrowserModule,
