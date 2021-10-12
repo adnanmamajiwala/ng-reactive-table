@@ -1,18 +1,18 @@
-<div class="d-flex flex-wrap align-content-around bg-light p-2" cdkDropListGroup>
-  <div *ngFor="let col of columnInfoList; let i=index"
+<div class="row align-content-around bg-light p-2" cdkDropListGroup>
+  <div *ngFor="let col of columnInfoList; let i=index" class="col-sm-2 m-1"
        cdkDropList cdkDropListOrientation="horizontal"
        [cdkDropListData]="{item:col,index:i}" (cdkDropListDropped)="drop($event)">
-    <div class="p-2 m-2 bg-white bd-card border border-secondary" cdkDrag>
-      <div class="" *cdkDragPlaceholder></div>
-      <div class="d-flex">
-        <div class="form-check-inline">
+    <div class="p-2 bg-white bd-card border border-secondary" cdkDrag>
+      <div *cdkDragPlaceholder></div>
+      <div class="row">
+        <div class="form-check-inline col-9">
           <input [checked]=col.selected
                  [value]="col"
                  class="form-check-input ms-1 me-2 mb-1 align-top"
                  type="checkbox">
           <label class="form-check-label grab">{{i}} - {{col.displayText}}</label>
         </div>
-        <i class="bi bi-grip-vertical grab ms-auto"></i>
+        <i class="bi bi-grip-vertical grab ms-auto col-2"></i>
       </div>
     </div>
   </div>
