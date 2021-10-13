@@ -1,0 +1,14 @@
+.badge {
+  border:1px solid #949393;
+  font-size: 11px;
+}
+
+.bg-close {
+  background-color: rgba(124, 24, 24, 0.32);
+  border:1px solid #949393;
+
+  &:hover {
+    background-color: rgba(124, 24, 24, 0.66);
+    cursor: pointer;
+  }
+}

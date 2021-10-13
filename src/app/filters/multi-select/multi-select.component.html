@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-1">
+    <div ngbDropdown class="d-inline-block">
+      <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>{{title}}</button>
+      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+        <div class="m-2 ms-3 me-3">
+          <div class="input-group">
+            <div class="input-group-text"><i class="bi bi-search"></i></div>
+            <input type="text" class="form-control" placeholder="search" #search>
+          </div>
+        </div>
+        <div class="menu-scroll">
+          <ng-template ngFor let-value [ngForOf]="list">
+            <button class="dropdown-item" (click)="onClick(value)">{{value}}</button>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-10">
+    <div class="d-flex flex-wrap align-content-around ms-4">
+      <div *ngFor="let value of selectedSet">
+      <span class="badge rounded-pill bg-light text-dark m-1">{{value}}
+        <span class="badge rounded-pill bg-close ms-2" (click)="remove(value)">x</span>
+      </span>
+      </div>
+    </div>
+  </div>
+</div>
+<hr>

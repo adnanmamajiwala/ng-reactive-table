@@ -45,6 +45,9 @@ import {DragAndDropComponent} from './drag-and-drop/drag-and-drop.component';
 import { SamplesTablePipe } from './samples/samples-table/samples-table.pipe';
 import { WeekSelectorComponent } from './week-selector/week-selector.component';
 import { DragAndDropFixedComponent } from './drag-and-drop-fixed/drag-and-drop-fixed.component';
+import { MultiSelectComponent } from './filters/multi-select/multi-select.component';
+import { PresetComponent } from './filters/preset/preset.component';
+import { FiltersComponent } from './filters/filters.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +68,10 @@ import { DragAndDropFixedComponent } from './drag-and-drop-fixed/drag-and-drop-f
     DragAndDropComponent,
     SamplesTablePipe,
     WeekSelectorComponent,
-    DragAndDropFixedComponent
+    DragAndDropFixedComponent,
+    MultiSelectComponent,
+    PresetComponent,
+    FiltersComponent
   ],
   imports: [
     BrowserModule,

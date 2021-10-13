@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-1">
+    <div ngbDropdown class="d-inline-block">
+      <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Preset</button>
+      <div ngbDropdownMenu aria-labelledby="dropdownBasic1" >
+        <button class="dropdown-item" *ngIf="!savedPresets || savedPresets.length == 0">No saved presets</button>
+        <ng-template ngFor let-value [ngForOf]="savedPresets">
+          <button class="dropdown-item" (click)="onClick(value)">{{value.name}}</button>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+  <div class="col-10" *ngIf="!!selected">
+    <div class="d-flex flex-wrap align-content-around ms-4">
+      <span class="badge rounded-pill bg-light text-dark m-1">{{selected.name}}
+        <span class="badge rounded-pill bg-close ms-2" (click)="clear()">x</span>
+      </span>
+    </div>
+  </div>
+</div>
+<div class="row mt-3">
+  <div class="col">
+    <input type="text" class="form-control" placeholder="Preset Name" [(ngModel)]="name">
+  </div>
+  <div class="col">
+    <button class="btn btn-success" (click)="save()">SAVE</button>
+  </div>
+</div>
+<hr>

@@ -1,5 +1,5 @@
 <div class="container mt-3">
-  <ul #nav="ngbNav" class="nav-pills mb-5" ngbNav [activeId]="7">
+  <ul #nav="ngbNav" class="nav-pills mb-5" ngbNav [activeId]="8">
     <li [ngbNavItem]="1">
       <a ngbNavLink>Table 1</a>
       <ng-template ngbNavContent>
@@ -40,6 +40,12 @@
       <a ngbNavLink>Drag & Drop - Fixed</a>
       <ng-template ngbNavContent>
         <app-drag-and-drop-fixed></app-drag-and-drop-fixed>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="8">
+      <a ngbNavLink>Filters</a>
+      <ng-template ngbNavContent>
+        <app-filters></app-filters>
       </ng-template>
     </li>
 <!--    <li [ngbNavItem]="7">-->
