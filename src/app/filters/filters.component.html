@@ -2,10 +2,10 @@
 <app-preset></app-preset>
 <app-multi-select title="Facilities" [list]="facilities"
                   (update)="updateFacilities($event)"
-                  [selected]="presetSettings?.facilities"></app-multi-select>
+                  [selected]="presetSettings.facilities"></app-multi-select>
 <app-multi-select title="Item Id" [list]="itemIds"
                   (update)="updateItemIds($event)"
-                  [selected]="presetSettings?.itemIds"></app-multi-select>
+                  [selected]="presetSettings.itemIds"></app-multi-select>
 <app-multi-select title="Item Name" [list]="itemNames"
                   (update)="updateItemNames($event)"
-                  [selected]="presetSettings?.itemNames"></app-multi-select>
+                  [selected]="presetSettings.itemNames"></app-multi-select>

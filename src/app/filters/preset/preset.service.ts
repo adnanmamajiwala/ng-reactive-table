@@ -1,14 +1,15 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {Preset, PresetSettings} from './preset.model';
+import {Preset, PresetSetting} from './preset.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PresetService {
 
-  private presetSettingsSubject = new BehaviorSubject<PresetSettings>(null as any);
+  private presetSettingsSubject = new BehaviorSubject<PresetSetting>(new PresetSetting());
+  // private endpoint = 'https://sample-jpa-app.herokuapp.com/presets';
   private endpoint = 'http://localhost:8080/presets';
 
   constructor(private httpClient: HttpClient) {
@@ -24,11 +25,11 @@ export class PresetService {
     return this.httpClient.post<Preset>(url, preset);
   }
 
-  presetSettings$() : Observable<PresetSettings> {
+  presetSetting$() : Observable<PresetSetting> {
     return this.presetSettingsSubject.asObservable();
   }
 
-  updateSettings(settings: PresetSettings) {
+  updateSetting(settings: PresetSetting) {
     this.presetSettingsSubject.next(settings);
   }
 
