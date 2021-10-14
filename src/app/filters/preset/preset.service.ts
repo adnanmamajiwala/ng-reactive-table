@@ -9,8 +9,8 @@ import {Preset, PresetSetting} from './preset.model';
 export class PresetService {
 
   private presetSettingsSubject = new BehaviorSubject<PresetSetting>(new PresetSetting());
-  // private endpoint = 'https://sample-jpa-app.herokuapp.com/presets';
-  private endpoint = 'http://localhost:8080/presets';
+  private endpoint = 'https://sample-jpa-app.herokuapp.com/presets';
+  // private endpoint = 'http://localhost:8080/presets';
 
   constructor(private httpClient: HttpClient) {
   }
