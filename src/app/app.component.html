@@ -1,5 +1,5 @@
 <div class="container mt-3">
-  <ul #nav="ngbNav" class="nav-pills mb-5" ngbNav [activeId]="8">
+  <ul #nav="ngbNav" class="nav-pills mb-5" ngbNav [activeId]="9">
     <li [ngbNavItem]="1">
       <a ngbNavLink>Table 1</a>
       <ng-template ngbNavContent>
@@ -48,12 +48,12 @@
         <app-filters></app-filters>
       </ng-template>
     </li>
-<!--    <li [ngbNavItem]="7">-->
-<!--      <a ngbNavLink>Week Selector</a>-->
-<!--      <ng-template ngbNavContent>-->
-<!--        <app-week-selector></app-week-selector>-->
-<!--      </ng-template>-->
-<!--    </li>-->
+    <li [ngbNavItem]="9">
+      <a ngbNavLink>D3 Charts</a>
+      <ng-template ngbNavContent>
+        <app-d3-chart></app-d3-chart>
+      </ng-template>
+    </li>
   </ul>
   <div [ngbNavOutlet]="nav"></div>
 </div>

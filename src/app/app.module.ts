@@ -48,6 +48,7 @@ import { DragAndDropFixedComponent } from './drag-and-drop-fixed/drag-and-drop-f
 import { MultiSelectComponent } from './filters/multi-select/multi-select.component';
 import { PresetComponent } from './filters/preset/preset.component';
 import { FiltersComponent } from './filters/filters.component';
+import { D3ChartComponent } from './d3-chart/d3-chart.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { FiltersComponent } from './filters/filters.component';
     DragAndDropFixedComponent,
     MultiSelectComponent,
     PresetComponent,
-    FiltersComponent
+    FiltersComponent,
+    D3ChartComponent
   ],
   imports: [
     BrowserModule,
