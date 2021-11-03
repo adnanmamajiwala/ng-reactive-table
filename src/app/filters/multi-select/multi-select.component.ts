@@ -54,10 +54,9 @@ export class MultiSelectComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if(!!this.selected) {
+    this.selectedSet = new Set<string>();
+    if(!!this.selected && this.selected.length > 0) {
       this.selected.forEach(value => this.selectedSet.add(value));
-    } else {
-      this.selectedSet = new Set<string>();
     }
   }
 

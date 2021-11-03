@@ -2,10 +2,10 @@ export class Preset {
   id: number;
   practiceId: number;
   typeName: string;
-  settings: PresetSettings[];
+  settings: PresetSetting[];
 }
 
-export class PresetSettings {
+export class PresetSetting {
   name: string;
 
   facilities: string[];
